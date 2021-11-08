@@ -19,9 +19,9 @@ AI
 AO
 FI
 FO
-OPTIONAL: FLAG BUS OR ALU
+FLAG BUS OR ALU
 
-5 ALU Control
+5 ALU Control lines
 EO
 
 TI

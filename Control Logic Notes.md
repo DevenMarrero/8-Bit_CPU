@@ -1,0 +1,86 @@
+HLT
+
+MIH
+MIL
+
+MDI
+MDO
+
+II
+SCR
+
+PCE
+PRO
+PCO
+PRI
+PCI
+
+AI
+AO
+FI
+FO
+FLAG BUS OR ALU
+
+5 ALU Control lines
+EO
+
+TI
+TO
+PBI
+PBO
+
+BI
+BO
+CI
+CO
+
+SIH
+SIL
+SOH
+SOL
+
+SPE
+UP/DOWN
+
+TOTAL: 38 CONTROL LINES
+
+10 direct lines, 14 select lines per chip
+
+
+Only one output active at a time: MDO, PRO, PCO, AO, FO, EO, TO, PBO, BO, CO, SOH, SOL  		12
+
+Only one input  active at a time: MIH, MIL, MDI, II, PRI, PCI, AI, FI, TI, PBI, BI, CI, SIH, STL	14
+
+LEFTOVER: HLT, SCR, PCE, ALU0, ALU1, ALU2, AL3, ALU4, SPE, UP/DOWN, FlagSelect				11
+													--
+													37
+
+
+
+| Control Line Position | Bank | Group | Symbol | Notes |
+| :-: | :-- | :-- | :-: | :-- |
+|1  | LEFT |  |  |  |
+|2  | LEFT |  |  |  |
+|3  | LEFT |  |  |  |
+|4  | LEFT |  |  |  |
+|5  | LEFT |  |  |  |
+|6  | LEFT |  |  |  |
+|7  | LEFT |  |  |  |
+|8  | LEFT |  |  |  |
+|9  | LEFT |  |  |  |
+|10 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|4 | LEFT |  |  |  |
+|25 | RIGHT |  |  |  |

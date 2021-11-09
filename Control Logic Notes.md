@@ -59,28 +59,28 @@ LEFTOVER: HLT, SCR, PCE, ALU0, ALU1, ALU2, AL3, ALU4, SPE, UP/DOWN, FlagSelect		
 
 | Control Line Position | Bank | Group | Symbol | Notes |
 | :-: | :-- | :-- | :-: | :-- |
-|1  | LEFT |  |  |  |
-|2  | LEFT |  |  |  |
-|3  | LEFT |  |  |  |
-|4  | LEFT |  |  |  |
-|5  | LEFT |  |  |  |
-|6  | LEFT |  |  |  |
-|7  | LEFT |  |  |  |
-|8  | LEFT |  |  |  |
-|9  | LEFT |  |  |  |
-|10 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|4 | LEFT |  |  |  |
-|25 | RIGHT |  |  |  |
+|1  | RIGHT | LOW    | 00000001 |  |
+|2  | RIGHT | LOW    | 00000002 |  |
+|3  | RIGHT | LOW    | 00000003 |  |
+|4  | RIGHT | LOW    | 00000004 |  |
+|5  | RIGHT | LOW    | 00000005 |  |
+|6  | RIGHT | LOW    | 00000006 |  |
+|7  | RIGHT | LOW    | 00000007 |  |
+|8  | RIGHT | HIGH   | 00000008 |  |
+|9  | RIGHT | HIGH   | 00000009 |  |
+|10 | RIGHT | HIGH   | 0000000A |  |
+|11 | RIGHT | HIGH   | 0000000B |  |
+|12 | RIGHT | HIGH   | 0000000C |  |
+|13 | RIGHT | HIGH   | 0000000D |  |
+|14 | RIGHT | HIGH   | 0000000E |  |
+|15 | RIGHT | DIRECT | 0000000x |  |
+|16 | RIGHT | DIRECT | 0000000x |  |
+|17 | RIGHT | DIRECT | 0000000x |  |
+|18 | RIGHT | DIRECT | 0000000x |  |
+|19 | RIGHT | DIRECT | 0000000x |  |
+|20 | RIGHT | DIRECT |  |  |
+|21 | RIGHT | DIRECT |  |  |
+|22 | RIGHT | DIRECT |  |  |
+|23 | RIGHT | DIRECT |  |  |
+|24 | RIGHT | DIRECT |  |  |
+|25 | LEFT | LOW |  |  |

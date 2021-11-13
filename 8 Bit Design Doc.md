@@ -78,6 +78,9 @@ RET
         SP : 100
         PC : 101
         IMM : 111
+        
+==ALU FUNCTIONS==
+
 
 
 == LAYOUT ==

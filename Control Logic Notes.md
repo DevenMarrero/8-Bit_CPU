@@ -53,8 +53,14 @@ Only one input active at a time: MIH, MIL, MDI, II, PRI, PCI, AI, FI,-TI, PBI, B
 
 LEFTOVER: HLT, SCR, PCE, ALU0, ALU1, ALU2, AL3, ALU4, SPE, UP/DOWN, FlagSelect  = 11
 
+
 Idea 1: Bitwise OR with active HIGH lines, AND with active LOW.
+
 Idea 2: XOR all bits.
+
+
+**Invert HLT line because it is the only one that is active low and not tied to a 74HC138**
+
 
 00000000000000000000000000000000
 

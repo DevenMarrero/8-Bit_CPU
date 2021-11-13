@@ -1,5 +1,5 @@
 
-3NOTES:
+NOTES:
     - Little Endian  
     - 8 bit processor 
     - 16 bit address bus (65k RAM)
@@ -61,11 +61,23 @@ POP
 CALL
 RET
 
+
 ==INSTRUCTION LAYOUT==
     xxyyyzzz
     Where xx is the OpCode
     yyy is the first register/Operand
     zzz is the second register/Operand
+
+
+==OPCODES==
+    Registers:
+        A : 000
+        B : 001
+        C : 010
+        T : 011
+        SP : 100
+        PC : 101
+        IMM : 111
 
 
 == LAYOUT ==

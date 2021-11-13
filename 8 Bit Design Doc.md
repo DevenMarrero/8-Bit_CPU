@@ -1,89 +1,128 @@
 
-NOTES:
-    - Little Endian  
-    - 8 bit processor 
-    - 16 bit address bus (65k RAM)
-    - Each instuction is 1-3 bytes, OpCode, Operand 1, Operand 2 
+## NOTES
+- Little Endian  
     
-    - Decide how you are going to do the I/O
-        1st option: Like Rolf, add custom microcode for everything. ie OUTLC_A, OUTLD_A, OUTLC_B, OUTLD_B = Send command from A, data from A, command from B, Data from B, ect.
-                    Advantages: All I/O can be connected to bus             Disadvantages: Requires tons of microcode, more tedius to program
+- 8 bit processor 
+    
+- 16 bit address bus (65k RAM)
+    
+- Each instuction is 1-3 bytes, OpCode, Operand 1, Operand 2 
+    
+- Decide how to do the I/O
+    1st option: Like Rolf, add custom microcode for everything. ie OUTLC_A, OUTLD_A, OUTLC_B, OUTLD_B = Send command from A, data from A, command from B, Data from B, ect. 
+    
+    Advantages: All I/O can be connected to bus             Disadvantages: Requires tons of microcode, more tedius to program
         
-        *2nd option: Like 65c02, Wire the I/O to the ram address lines. 
-                    Advantages: Simpler to program, looks better            Disadvantages: I/0 to be wired to second address Bus, Takes up memory space
+    -2nd option: Like 65c02, Wire the I/O to the ram address lines. 
+    
+    Advantages: Simpler to program, looks better            Disadvantages: I/0 to be wired to second address Bus, Takes up memory space
 
     RESETING:
         -74HC377 does not have reset, registers will have garbage on startup
         -Only a problem for the instruction register because control lines will activate 
         -Idea is to connect reset switch to upper half of unused ROM, 0x8000 - 0xFFF will be bootcode to clear registers.
 
-==ADDRESSING MODES==
-    Immediate Value  #$8000 - Value directly provided in machine code via instruction
-    Absolute          $8000 - Value located at memory address provided in machine code
-    Register           R1 - Value is being stored in one of the registers 
-    Register Indirect [R1]- Value is at memory address currently contained in a register
+## ADDRESSING MODES
+Immediate Value  #$8000 - Value directly provided in machine code via instruction
+
+Absolute          $8000 - Value located at memory address provided in machine code
+
+Register           R1 - Value is being stored in one of the registers 
+
+Register Indirect [R1]- Value is at memory address currently contained in a register
 
 
-== INSTRUCTIONS ==
+## INSTRUCTIONS 
 NOP
+
 HLT
+
 OUT
 
+
 ADD
+
 ADC
+
 SUB
+
 SUBB
+
 CMP
 
+
 AND
+
 OR
+
 NOT
+
 NOR
+
 XOR
 
+
 INC
+
 DEC
+
 SHL
+
 SHR
+
 SAR
 
+
 LOD
+
 STO
+
 MOV
 
+
 JMP
+
 JE
+
 JZ
+
 JN
 
+
 PUSH
+
 POP
+
 CALL
+
 RET
 
 
-==INSTRUCTION LAYOUT==
-    xxyyyzzz
-    Where xx is the OpCode
-    yyy is the first register/Operand
-    zzz is the second register/Operand
+## INSTRUCTION LAYOUT
+xxyyyzzz
+
+Where xx is the OpCode
+
+yyy is the first register/Operand
+
+zzz is the second register/Operand
 
 
-==OPCODES==
-    Registers:
-        A : 000
-        B : 001
-        C : 010
-        T : 011
-        SP : 100
-        PC : 101
-        IMM : 111
+## OPCODES
+Registers:
+    A : 000
+    B : 001
+    C : 010
+    T : 011
+    SP : 100
+    PC : 101
+    IMM : 111
         
-==ALU FUNCTIONS==
+## ALU FUNCTIONS
 
 
 
-== LAYOUT ==
+## LAYOUT
                 +-----------|BUS|-----------+
     HLT     -   |    CLK    |   |  PR / PC  | PCE PRO PCO JMPH JMPL (OPT. HILO) - 
                 +-----------|   |-----------+
@@ -124,192 +163,247 @@ OUT LCD-
 IN BUTTONS-
 
 
-Page Register -8 bit:
-    -2x 74HC161 - 4 bit counter
-    -1x 74HC245 Bus transfer
+### Page Register -8 bit:
+-2x 74HC161 - 4 bit counter
 
-Program Counter -8 bit:
-    -2x 74HC161 - 4 bit counter
-    -1x 74HC245 Bus transfer
+-1x 74HC245 Bus transfer
 
+### Program Counter -8 bit:
+-2x 74HC161 - 4 bit counter
 
-Memory Address Register  -16 bit:
-    -2x 74HC377
-    -4x 74HC157
-
-    -2 registers, MAR-H, MAR-L 
-    -8 Dip switches for MAR-L 
-
-    Program mode for MAR-H 157's is 
-    tied to 8800 (First Page of RAM)
+-1x 74HC245 Bus transfer
 
 
-== CLOCK ==
-    3x TCL555 
-    1x 74hc14 
-    1x 75hc08
-    2x button
-    1x npn transistor
-    1M Potentiometer
+### Memory Address Register  -16 bit:
+-2x 74HC377
 
-    1x MXO45(HS) 
-    1x 74hc151 
-    1x 74hc161
+-4x 74HC157
 
-    Crystal into 74hc161, 
-    6 auto outputs into 74hc151
-    3 dip switches active HIGH
+-2 registers, MAR-H, MAR-L 
+
+-8 Dip switches for MAR-L 
 
 
-== Memory ==
-    ROM:
-        32K x 8 ROM 28c256 (Active low, CE, OE, WE)
+Program mode for MAR-H 157's is 
+
+tied to 8800 (First Page of RAM)
 
 
-    RAM:
-        -1x 32K x 8 RAM 62256 (Active low, CE, OE, WE)
+## CLOCK
+3x TCL555 
+1x 74hc14 
+1x 75hc08
+2x button
+1x npn transistor
+1M Potentiometer
 
-        -1x 74HC245
-    
-        -Ram has common I/O lines, requires second bus to seperate multiplexer
-            Steps to write to RAM
-            1. OE1 signal low, multiplexer data is on second bus
-            2. OE of 62256 set high, set I/O to input
-            3. WE of 62256 pulsed to store data on second bus to RAM
+1x MXO45(HS) 
+1x 74hc151 
+1x 74hc161
 
-
-    Memory Map to RAM/ROM ~CE
-
-    RAM ~WE/257 ~OE HIGH (Do not input data)
-    RAM/ROM ~OE LOW (Always output, depend on mem map select)
-    
-    If (CLK and MDi and RUN) or (PROG and PUSH)
-
-        RAM/ROM ~OE HIGH (stop output)
-        RAM ~WE/257 ~OE LOW (set RAM input, output data)
+Crystal into 74hc161, 
+6 auto outputs into 74hc151
+3 dip switches active HIGH
 
 
-    Stack:
-        -255 bytes
-        4X 74HC191 (4 bit binary up/down counter)
-
-        PUSH - Write value to stack then decrease pointer
-        PULL
-
-        By using instructions to store the stack pointer on the stack (ST_SPH, ST_SPL) 
-         the stack register is freed up to be used as two regular registers (with inc and dcr)
+## Memory
+### ROM
+32K x 8 ROM 28c256 (Active low, CE, OE, WE)
 
 
-== MEMORY LAYOUT ==
+### RAM
+1x 32K x 8 RAM 62256 (Active low, CE, OE, WE)
+
+1x 74HC245
+
+### Ram has common I/O lines, requires second bus to seperate multiplexer
+    Steps to write to RAM
+    1. OE1 signal low, multiplexer data is on second bus
+    2. OE of 62256 set high, set I/O to input
+    3. WE of 62256 pulsed to store data on second bus to RAM
+
+
+### Memory Map to RAM/ROM ~CE
+
+RAM ~WE/257 ~OE HIGH (Do not input data)
+
+RAM/ROM ~OE LOW (Always output, depend on mem map select)
+
+
+If (CLK and MDi and RUN) or (PROG and PUSH)
+
+
+RAM/ROM ~OE HIGH (stop output)
+
+RAM ~WE/257 ~OE LOW (set RAM input, output data)
+
+
+### Stack:
+-255 bytes
+
+4X 74HC191 (4 bit binary up/down counter)
+
+
+PUSH - Write value to stack then decrease pointer
+
+PULL
+
+
+By using instructions to store the stack pointer on the stack (ST_SPH, ST_SPL) 
+ the stack register is freed up to be used as two regular registers (with inc and dcr)
+
+
+## MEMORY LAYOUT
     0x0000..0x77FF ROM   (0000 0000 0000 0000..0111 0111 1111 1111) 0..30,719
     0x7800..0x7FFF I/O   (0111 1000 0000 0000..0111 1111 1111 1111) 30,720..32,767
     0x8000..0xFFFF RAM   (1000 0000 0000 0000..1111 1111 1111 1111) 32,768..65,535            
-    
+
     0xFF00..0xFFFF Stack (1111 1111 0000 0000..1111 1111 1111 1111) 65,280..65,535
 
-    = MEMORY DECODE LOGIC =
-    ~a15 = ~RAM
-    ~a15 & a14-a11 = I/O
-    a15 | a14-a11 = ~ROM
+### MEMORY DECODE LOGIC
+~a15 = ~RAM
 
-    16 chip enabled by Y0 on pin E3
-        4, 5, 6
-    128 chip enabled by ~10
-        7, 8, 9
-    1024 enabled by 10
+~a15 & a14-a11 = I/O
 
-== MEMORY LAYOUT IO IN RAM ==
+a15 | a14-a11 = ~ROM
+
+
+16 chip enabled by Y0 on pin E3
+
+128 chip enabled by ~10
+
+1024 enabled by 10
+
+## MEMORY LAYOUT IO IN RAM
     0x0000..0x7FFF ROM  (0000 0000 0000 0000..0111 1111 1111 1111)
     0X8000..0X87FF IO   (1000 0000 0000 0000..1000 0111 1111 1111)
     0X8800..0XFFFF RAM  (1000 1000 0000 0000..1111 1111 1111 1111)
 
-    A15 LOW = ROM
-    A15 HIGH AND A14-A11 LOW = IO
-    A15 HIGH AND A14-A11 NOT ALL LOW = RAM
+A15 LOW = ROM
 
-    A15 directly to ROM
-    NOR A14-A11, AND with A15 
-    NOR then Invert A14-11, AND with A15
+A15 HIGH AND A14-A11 LOW = IO
+
+A15 HIGH AND A14-A11 NOT ALL LOW = RAM
 
 
+A15 directly to ROM
 
+NOR A14-A11, AND with A15 
 
+NOR then Invert A14-11, AND with A15
 
-== Registers ==
-    A (1): GP/ACC register
-    B (2): GP register -Indirect capable
-    C (3): GP register -Indirect capable
-    F (4):    Flags register   
-        CARRY    - Carry bit on ALU
-        NEGATIVE - MSB of AlU
-        ZERO     - NOR all bits together
-        OVERFLOW - https://stackoverflow.com/questions/19301498/carry-flag-auxiliary-flag-and-overflow-flag-in-assembly/19301682
+## Registers 
+A (1): GP/ACC register
 
-    SPH (): Stack Pointer High
-    SPL (): Stack Pointer Low
+B (2): GP register -Indirect capable
 
-    PCH (): Program Counter High
-    PCL (): Program Counter Low
+C (3): GP register -Indirect capable
 
-    IR (): Instruction Register
+#### F (4):    Flags register   
+
+CARRY    - Carry bit on ALU
     
-
-    -7x 74HC377
-    -7X 74H245
-
-    -All registers use 74HC377
-    -A & Flags on one board
-    -B & C on one board
-    -Temporary Register and PR-Buf on one board
-    -STPH & STPL on one board
-
-    -Flags connected to bus
-
-
-== ALU ==
-    -2x 74HC181
+NEGATIVE - MSB of AlU
     
-    -6 control signals:
-        -4 operation mode select. Addition, subtraction, AND, OR, etc
-        -1 mode selection. Slecting arithmatic or logic operation
-        -A carry in, attached to a control signal
+ZERO     - NOR all bits together
     
-    -Carry flag comes from ALU with higher 4 bits
-    -Sign flag is the MS
-    -Zero flag is identical to Ben Eaters. Nand all bits
+OVERFLOW - https://stackoverflow.com/questions/19301498/carry-flag-auxiliary-flag-and-overflow-flag-in-assembly/19301682
 
 
-Flag Masking:
-    -1x 74HC157
+SPH (): Stack Pointer High
 
-    -Avoids massive EEPROM array for all combinatin of flags
-    -Multiplexer A inputs tied to ground
-    -B inputs attached to flags
-    -Select is MSB of instruction register
+SPL (): Stack Pointer Low
 
-    -First 127 instructions A is selected and flag lines are Zero
-    -Flag instruction are 128 upwards, need multiple copies
+
+PCH (): Program Counter High
+
+PCL (): Program Counter Low
+
+
+IR (): Instruction Register
+
+
+-7x 74HC377
+
+-7X 74H245
+
+
+-All registers use 74HC377
+
+-A & Flags on one board
+
+-B & C on one board
+
+-Temporary Register and PR-Buf on one board
+
+
+-STPH & STPL on one board
+
+-Flags connected to bus
+
+
+## ALU
+-2x 74HC181
+
+### 6 control signals:
+-4 operation mode select. Addition, subtraction, AND, OR, etc
+
+-1 mode selection. Slecting arithmatic or logic operation
+
+-A carry in, attached to a control signal
+
+
+-Carry flag comes from ALU with higher 4 bits
+
+-Sign flag is the MS
+
+-Zero flag is identical to Ben Eaters. Nand all bits
+
+
+## Flag Masking:
+-1x 74HC157
+
+-Avoids massive EEPROM array for all combinatin of flags
+
+-Multiplexer A inputs tied to ground
+
+-B inputs attached to flags
+
+-Select is MSB of instruction register
+
+
+-First 127 instructions A is selected and flag lines are Zero
+
+-Flag instruction are 128 upwards, need multiple copies
 
 
 Step Counter:
     -Increase steps from t0-t4 to t0-t7 by moving reset from pin 10 to pin 7 of 74ls138
 
-POWER: 
-    -Split left and right, only join at top
-    -1000uf in middle of each half
-    -220uf at feeding point
-    -0.1uf on each rail
 
-BUGS:
-    -Resistors on control EEPROM outputs. Pull down for active high, pull up for active low
-    -Add low pass filters to:
-        -Count enable of program counter
-        -Instruction in of instruction register
-        -Count enable of step counter
-        -Control signals of stack pointer
+## POWER: 
+-Split left and right, only join at top
+
+-1000uf in middle of each half
+
+-220uf at feeding point
+
+-0.1uf on each rail
+
+## BUGS:
+-Resistors on control EEPROM outputs. Pull down for active high, pull up for active low
+
+### Add low pass filters to:
+-Count enable of program counter
+
+-Instruction in of instruction register
+
+-Count enable of step counter
+
+-Control signals of stack pointer
 
 
-==Total Parts==
+## Total Parts
     74hc00 = NAND
     74hc02 = NOR
     74hc08 = AND
@@ -405,13 +499,15 @@ BUGS:
 
 
 
-Possibly Build Custom Assembler?
-    Python
-    https://www.youtube.com/watch?v=5ImTvOyvH2w -Write your own assembler for your own CPU
-    Search how to make a programming language with python
+## Possibly Build Custom Assembler?
+Python
 
-Build EEPROM Porgrammer to Read from Bin File directly:
-    -Python send file to arduino
+https://www.youtube.com/watch?v=5ImTvOyvH2w -Write your own assembler for your own CPU
+
+Search how to make a programming language with python
+
+## Build EEPROM Porgrammer to Read from Bin File directly:
+-Python send file to arduino
 
     NOP = 0xea
     EEPROM_SIZE = 32768

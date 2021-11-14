@@ -59,7 +59,7 @@ NOT
 
 NOR
 
-XOR
+XOR-
 
 
 INC
@@ -70,7 +70,7 @@ SHL
 
 SHR
 
-SAR
+ASR
 
 
 LOD
@@ -119,6 +119,25 @@ Registers:
     IMM : 111
         
 ## ALU FUNCTIONS
+| Number | Logic |  No Carry (H) | Carry (L)|
+| :-: | :-- | :-- | :-- |
+| 0  | Invert A                           | A                              | INC |
+| 1  | NOR                                | OR                             | OR PLUS 1 |
+| 2  | True when only B is on             | False when only B is on        | False when only B is on PLUS 1 |
+| 3  | 0                                  | 2's COMPL                      | 0 |
+| 4  | NAND                               |             |  |
+| 5  | Invert B                           |             |  |
+| 6  | XOR                                | A MINUS B MINUS 1              | A MINUS B |
+| 7  | True when only A is on             | True when only A is on MINUS 1 | True when only A is on |
+| 8  | False when only A is on            | A PLUS AB                      | A PLUS AB PLUS 1  |
+| 9  | Both on or Both off (inverted XOR) | A PLUS B                       | A PLUS B PLUS 1 |
+| 10 | B                                  |             |  |
+| 11 | AND                                | AND MINUS 1                    | AND |
+| 12 | 1                                  | Shift Left                     | Shift Left PLUS 1 |
+| 13 | False when only B is on            | OR PLUS A                      | OR PLUS A PLUS 1 |
+| 14 | OR                                 | False when only B is on PLUS A | False when only B is on PLUS A PLUS 1 |
+| 15 | A                                  | DEC                            | A |
+
 
 
 

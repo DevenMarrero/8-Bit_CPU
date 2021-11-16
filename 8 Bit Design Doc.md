@@ -113,9 +113,10 @@ Registers:
 - A : 000
 - B : 001
 - C : 010
-- T : 011
-- SP : 100
+- SPL : 011
+- SPH : 100
 - PC : 101
+- SPi/d 110
 - IMM : 111
     
   
@@ -152,14 +153,16 @@ Registers:
 - RET - POP PC from stack (01 xxx)
 
 - STO 10- Store register to indirect register value
-- PUSH -Decrement stack
+- PUSH -Decrement stack 10 110 XXX
 - CALL -Push PC to stack
 - ALU 11
 
 ### NOT USED
 - MOV SPi/d,xxx     00 110 xxx
 - MOV #,xxx         00 111 xxx
+- MOV xxx, SPi/d    00 xxx 110
 - LOD #,[xxx]       01 111 xxx
+- LOD SPi/d, [xxx]  01 110 xxx
 - STO [xxx], SPi/d  10 xxx 110
 
 

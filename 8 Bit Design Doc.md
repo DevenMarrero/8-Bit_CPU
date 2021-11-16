@@ -110,14 +110,59 @@ zzz is the second register/Operand
 
 ## OPCODES
 Registers:
-    A : 000
-    B : 001
-    C : 010
-    T : 011
-    SP : 100
-    PC : 101
-    IMM : 111
+- A : 000
+- B : 001
+- C : 010
+- T : 011
+- SP : 100
+- PC : 101
+- IMM : 111
+    
+  
+- 8 Bit value source
+    - A
+    - B
+    - C
+    - Value at specific memory address
+    - Immediate
+- 8 bit value destination
+    - A
+    - B
+    - C
+    - Value at memory address
+- 16 bit value source
+    - Value at address in MAR
+    - 2 byte value starting at specific memory address
+    - 2 byte immediate 
+- 16 bit value destination
+    - MAR
+    - 2 byte value starting at specific memory address
+    - 2 byte immediate 
         
+- Address Source
+    - 2 byte value starting at specific memory address
+    - 2 byte immediate 
+
+- MOV 00- copy register to register
+- DATA -Move immediate to register
+- JMP
+
+- LOD 01- Load register from inderect register value
+- POP -Increment stack (01 xxx 110)
+- RET - POP PC from stack (01 xxx)
+
+- STO 10- Store register to indirect register value
+- PUSH -Decrement stack
+- CALL -Push PC to stack
+- ALU 11
+
+### NOT USED
+- MOV SPi/d,xxx     00 110 xxx
+- MOV #,xxx         00 111 xxx
+- LOD #,[xxx]       01 111 xxx
+- STO [xxx], SPi/d  10 xxx 110
+
+
 ## ALU FUNCTIONS
 | Number | Logic |  No Carry (H) | Carry (L)|
 | :-: | :-- | :-- | :-- |

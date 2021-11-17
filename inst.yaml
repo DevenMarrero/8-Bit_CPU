@@ -46,17 +46,29 @@ flags:
   - carry
   - negative
 
+# instruction_prefix_steps:
+#   0:
+#     - lines: PCO
+#         MLI
+#   1:
+#     - lines: PRO
+#         MHI
+#   2:
+#     - lines: MDO
+#         II
+#         CE
+
 instruction_prefix_steps:
   0:
-    - lines: PCO
-        MLI
+    - PCO
+    - MLI
   1:
-    - lines: PRO
-        MHI
+    - PRO
+    - MHI
   2:
-    - lines: MDO
-        II
-        CE
+    - MDO
+    - II
+    - CE
 
 instructions:
   NOP:

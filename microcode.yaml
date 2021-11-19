@@ -49,44 +49,44 @@ flags:
 
 # instruction_prefix_steps:
 #   0:
-#     - lines: PCO
+#     lines: PCO
 #         MLI
 #   1:
-#     - lines: PRO
+#     lines: PRO
 #         MHI
 #   2:
-#     - lines: MDO
+#     lines: MDO
 #         II
 #        PCE
 
 instruction_prefix_steps:
   0:
-    - lines:
-        - PCO
-        - MLI
+    lines:
+      - PCO
+      - MLI
   1:
-    - lines:
-        - PRO
-        - MHI
+    lines:
+      - PRO
+      - MHI
   2:
-    - lines:
-        - MDO
-        - II
-        - PCE
+    lines:
+      - MDO
+      - II
+      - PCE
 
 instructions:
   NOP:
     value: 0
     steps:
       3:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   HLT:
     value: 0xFF
     steps:
       3:
-        - lines:
-            - HLT
+        lines:
+          - HLT
   #
   # MOV
   #
@@ -94,324 +94,385 @@ instructions:
     value: 1
     steps:
       3:
-        - lines:
-            - BO
-            - AI
+        lines:
+          - BO
+          - AI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_A_C:
     value: 2
     steps:
       3:
-        - lines:
-            - CO
-            - AI
+        lines:
+          - CO
+          - AI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_A_SPL:
     value: 3
     steps:
       3:
-        - lines:
-            - SLO
-            - AI
+        lines:
+          - SLO
+          - AI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_A_SPH:
     value: 4
     steps:
       3:
-        - lines:
-            - SHO
-            - AI
+        lines:
+          - SHO
+          - AI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_A_#:
     value: 7
     steps:
       3:
-        - lines:
-            - PCO
-            - MLI
+        lines:
+          - PCO
+          - MLI
       4:
-        - lines:
-            - PRO
-            - MHI
+        lines:
+          - PRO
+          - MHI
       5:
-        - lines:
-            - MDO
-            - AI
+        lines:
+          - MDO
+          - AI
       6:
-        - lines:
-            - SCR
+        lines:
+          - SCR
 
   MOV_B_A:
     value: 8
     steps:
       3:
-        - lines:
-            - AO
-            - BI
+        lines:
+          - AO
+          - BI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_B_C:
     value: 0xA
     steps:
       3:
-        - lines:
-            - CO
-            - BI
+        lines:
+          - CO
+          - BI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_B_SPL:
     value: 0xB
     steps:
       3:
-        - lines:
-            - SLO
-            - BI
+        lines:
+          - SLO
+          - BI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_B_SPH:
     value: 0xC
     steps:
       3:
-        - lines:
-            - SHO
-            - BI
+        lines:
+          - SHO
+          - BI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_B_#:
     value: 0xF
     steps:
       3:
-        - lines:
-            - PCO
-            - MLI
+        lines:
+          - PCO
+          - MLI
       4:
-        - lines:
-            - PRO
-            - MHI
+        lines:
+          - PRO
+          - MHI
       5:
-        - lines:
-            - MDO
-            - BI
+        lines:
+          - MDO
+          - BI
       6:
-        - lines:
-            - SCR
+        lines:
+          - SCR
 
   MOV_C_A:
     value: 0x10
     steps:
       3:
-        - lines:
-            - AO
-            - CI
+        lines:
+          - AO
+          - CI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_C_B:
     value: 0x11
     steps:
       3:
-        - lines:
-            - BO
-            - CI
+        lines:
+          - BO
+          - CI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_C_SPL:
     value: 0x13
     steps:
       3:
-        - lines:
-            - SLO
-            - CI
+        lines:
+          - SLO
+          - CI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_C_SPH:
     value: 0x14
     steps:
       3:
-        - lines:
-            - SHO
-            - CI
+        lines:
+          - SHO
+          - CI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_C_#:
     value: 0x17
     steps:
       3:
-        - lines:
-            - PCO
-            - MLI
+        lines:
+          - PCO
+          - MLI
       4:
-        - lines:
-            - PRO
-            - MHI
+        lines:
+          - PRO
+          - MHI
       5:
-        - lines:
-            - MDO
-            - CI
+        lines:
+          - MDO
+          - CI
       6:
-        - lines:
-            - SCR
+        lines:
+          - SCR
 
   MOV_SPL_A:
     value: 18
     steps:
       3:
-        - lines:
-            - AO
-            - SLI
+        lines:
+          - AO
+          - SLI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPL_B:
     value: 0x19
     steps:
       3:
-        - lines:
-            - BO
-            - SLI
+        lines:
+          - BO
+          - SLI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPL_C:
     value: 0x1A
     steps:
       3:
-        - lines:
-            - CO
-            - SLI
+        lines:
+          - CO
+          - SLI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPL_SPH:
     value: 0x1C
     steps:
       3:
-        - lines:
-            - SHO
-            - SLI
+        lines:
+          - SHO
+          - SLI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPL_#:
     value: 0x1F
     steps:
       3:
-        - lines:
-            - PCO
-            - MLI
+        lines:
+          - PCO
+          - MLI
       4:
-        - lines:
-            - PRO
-            - MHI
+        lines:
+          - PRO
+          - MHI
       5:
-        - lines:
-            - MDO
-            - SLI
+        lines:
+          - MDO
+          - SLI
       6:
-        - lines:
-            - SCR
+        lines:
+          - SCR
 
   MOV_SPH_A:
     value: 20
     steps:
       3:
-        - lines:
-            - AO
+        lines:
+          - AO
 
-            - SHI
+          - SHI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPH_B:
     value: 0x21
     steps:
       3:
-        - lines:
-            - BO
-            - SHI
+        lines:
+          - BO
+          - SHI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPH_C:
     value: 0x22
     steps:
       3:
-        - lines:
-            - CO
-            - SHI
+        lines:
+          - CO
+          - SHI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPH_SPL:
     value: 0x23
     steps:
       3:
-        - lines:
-            - SLO
-            - SHI
+        lines:
+          - SLO
+          - SHI
       4:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   MOV_SPH_#:
     value: 0x27
+
     steps:
       3:
-        - lines:
-            - PCO
-            - MLI
+        lines:
+          - PCO
+          - MLI
       4:
-        - lines:
-            - PRO
-            - MHI
+        lines:
+          - PRO
+          - MHI
       5:
-        - lines:
-            - MDO
-            - SHI
+        lines:
+          - MDO
+          - SHI
       6:
-        - lines:
-            - SCR
+        lines:
+          - SCR
   #
   # JUMPS
   #
   JMP:
     value: 0x2F
+
     steps:
       3:
-        - lines:
+        lines:
+          - PCO
+          - MLI
+      4:
+        lines:
+          - MDO
+          - PCBI
+          - PCE
+      5:
+        lines:
+          - PCO
+          - MLI
+      6:
+        lines:
+          - MDO
+          - PRI
+      7:
+        lines:
+          - PCBO
+          - PCI
+          - PCE
+      8:
+        lines:
+          - SCR
+
+  JMPZ:
+    value: 0x30
+    flag_inst: True
+    steps:
+      3:
+        - flags:
+            - zero: 0
+          lines:
+            - PCE
+
+        - flags:
+            - zero: 1
+          lines:
             - PCO
             - MLI
       4:
-        - lines:
+        - flags:
+            - zero: 0
+
+          lines:
+            - PCE
+
+        - flags:
+            - zero: 1
+          lines:
             - MDO
             - PCBI
             - PCE
       5:
-        - lines:
+        - flags:
+            - zero: 0
+          lines:
+            - SCR
+
+        - flags:
+            - zero: 1
+          lines:
             - PCO
             - MLI
       6:
-        - lines:
+        - flags:
+            - zero: 1
+          lines:
             - MDO
             - PRI
       7:
-        - lines:
+        - flags:
+            - zero: 1
+          lines:
             - PCBO
             - PCI
+            - PCE
       8:
-        - lines:
+        - flags:
+            - zero: 1
+          lines:
             - SCR

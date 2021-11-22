@@ -476,3 +476,409 @@ instructions:
             - zero: 1
           lines:
             - SCR
+            
+  #
+  # NEW
+  #
+  INC_A:
+    value: 0xDC
+    flag_inst: True
+    steps:
+      3:
+        - flags
+          - flag:
+            carry: 0
+          lines:
+            # HHLL H Logic 1 
+            - ALU2
+            - ALU3
+            - ALUM
+            - EO
+            - TI
+
+          - flag:
+            carry: 1
+          lines:
+            # LLLL L A plus 1
+            - EO
+            - AI
+            - FI
+      4:
+        - flags
+          - flag:
+            carry: 0
+          lines:
+            # HLLH L A plus B
+            - ALU0
+            - ALU3
+            - EO
+            - AI
+            - FI
+
+          - flag:
+            carry: 1
+          lines:
+            - SCR
+      5:
+        - flags
+          - flag:
+            carry: 0
+          lines:
+            - SCR
+
+
+# no carry
+#   B in T
+#   A in B
+#   1 in A
+#   A plus B in T
+#   B in A
+#   T in B
+
+# carry
+#   A in T
+#   B in A
+#   A plus 1 in B
+#   T in A
+
+
+  INC_B:
+    value: 0xDD
+    flag_inst: True
+    steps:
+      3:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - BO
+            - TI
+
+          - flag
+            carry: 1
+          lines:
+            - AO
+            - TI
+      4:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - AO
+            - BI
+
+          - flag
+            carry: 1
+          lines:
+            - BO
+            - AI
+      5:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            # HHLL H
+            - ALU2
+            - ALU3
+            - ALUM
+            - EO
+            - AI
+
+          - flag
+            carry: 1
+          lines:
+            # LLLL L
+            - EO
+            - BI
+      6:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            # HLLH L
+            - ALU0
+            - ALU3
+            - EO
+            - TI
+            - FI
+
+          - flag
+            carry: 1
+          lines:
+            - TO
+            - AI
+      7:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - BO
+            - AI
+
+          - flag
+            carry: 1
+          lines:
+            - SCR
+      8:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - TO
+            - BI
+      9:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - SCR
+  INC_C:
+    value: 0xDE
+    flag_inst: True
+    steps:
+      3:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - CO
+            - TI
+
+          - flag
+            carry: 1
+          lines:
+            - AO
+            - TI
+      4:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - AO
+            - CI
+
+          - flag
+            carry: 1
+          lines:
+            - CO
+            - AI
+      5:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            # HHLL H Logic 1
+            - ALU2
+            - ALU3
+            - ALUM
+            - EO
+            - AI
+
+          - flag
+            carry: 1
+          lines:
+            # LLLL L
+            - EO
+            - CI
+      6:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            # HLLH L A plus B
+            - ALU0
+            - ALU3
+            - EO
+            - TI
+            - FI
+
+          - flag
+            carry: 1
+          lines:
+            - TO
+            - AI
+      7:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - CO
+            - AI
+
+          - flag
+            carry: 1
+          lines:
+            - SCR
+      8:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - TO
+            - CI
+      9:
+        - flags 
+          - flag:
+            carry: 0
+          lines:
+            - SCR
+  INC_[#]:
+    value: 0xDF
+    flag_inst: True
+    steps:
+      3:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - PCO
+            - MLI
+
+          - flag
+            carry: 1
+          lines:
+            - PCO
+            - MLI
+      4:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - MDO
+            - PCBI
+            - PCE
+
+          - flag
+            carry: 1
+          lines:
+            - MDO
+            - PCBI
+            - PCE
+      5:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - PCO
+            - MLI
+
+          - flag
+            carry: 1
+          lines:
+            - PCO
+            - MLI
+      6:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - MDO
+            - MHI
+
+          - flag
+            carry: 1
+          lines:
+            - MDO
+            - MHI
+      7:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - PCBO
+            - MLI
+            - PCE
+
+          - flag
+            carry: 1
+          lines:
+            - PCBO
+            - MLI
+            - PCE
+      8:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - MDO
+            - TI
+
+          - flag
+            carry: 1
+          lines:
+            - AO
+            - TI
+      9:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - AO
+            - MDI
+
+          - flag
+            carry: 1
+          lines:
+            - MDO
+            - AI
+      10:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            # HHLL H Logic 1
+            - ALU2
+            - ALU3
+            - ALUM
+            - EO
+            - AI
+
+          - flag
+            carry: 1
+          lines:
+            - EO
+            - MDI
+      11:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            # HLLH L A plus B
+            - ALU0
+            - ALU3
+            - EO
+            - TI
+            - FI
+
+          - flag
+            carry: 1
+          lines:
+            - TO
+            - AI
+      12:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - MDO
+            - AI
+
+          - flag
+            carry: 1
+          lines:
+            - SCR
+      13:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - TO
+            - MDI
+      14:
+        - flags
+          - flag
+            carry: 0
+          lines:
+            - SCR
+
+  

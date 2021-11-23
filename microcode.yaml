@@ -18,7 +18,8 @@ control_lines:
   PCE: 0x00000040
   FSEL: 0x00000080 # ALU = LOW, BUS = HIGH
   SPE: 0x00000100
-  U/D: 0x00000200 # U = LOW, D = HIGH
+  U/D: 0x00000200 # U = LOW (POP) inc after pop, D = HIGH (PUSH)
+  # The stack and the stack pointer
 
   PRO: 0x00010000
   PCO: 0x00020000
@@ -1551,7 +1552,8 @@ instructions:
         lines:
           - MDO
           - AI
-          - SPE # Stack count default to up
+          - SPE 
+          # Stack count default to up
       6:
         lines:
           - SCR
@@ -1570,7 +1572,8 @@ instructions:
         lines:
           - MDO
           - BI
-          - SPE # Stack count default to up
+          - SPE 
+          # Stack count default to up
       6:
         lines:
           - SCR
@@ -1589,7 +1592,8 @@ instructions:
         lines:
           - MDO
           - CI
-          - SPE # Stack count default to up
+          - SPE 
+          # Stack count default to up
       6:
         lines:
           - SCR
@@ -1609,10 +1613,144 @@ instructions:
           - MDO
           - FI
           - FSEL
+          - SPE 
+          # Stack count default to up
+      6:
+        lines:
+          - SCR
+ 
+  PUSH_A:
+    value: 0xB0
+    steps:
+      3:
+        lines:
+          - SLO
+          - MLI
+      4:
+        lines:
+          - SHO
+          - MHI
+      5:
+        lines:
+          - AO
+          - MDI
+          - SPE
+          - U/D # Stack down
+      6:
+        lines:
+          - SCR
+  PUSH_B:
+    value: 0xB1
+    steps:
+      3:
+        lines:
+          - SLO
+          - MLI
+      4:
+        lines:
+          - SHO
+          - MHI
+      5:
+        lines:
+          - BO
+          - MDI
+          - SPE
+          - U/D # Stack down
+      6:
+        lines:
+          - SCR
+  PUSH_C:
+    value: 0xB2
+    steps:
+      3:
+        lines:
+          - SLO
+          - MLI
+      4:
+        lines:
+          - SHO
+          - MHI
+      5:
+        lines:
+          - CO
+          - MDI
+          - SPE
+          - U/D # Stack down
+      6:
+        lines:
+          - SCR
+  PUSH_PSW:
+    value: 0xB3
+    steps:
+      3:
+        lines:
+          - SLO
+          - MLI
+      4:
+        lines:
+          - SHO
+          - MHI
+      5:
+        lines:
+          - FO
+          - MDI
+          - SPE
+          - U/D # Stack down
+      6:
+        lines:
+          - SCR
+  # 
+  # page -> T, pce
+  # addr -> PCB, pce
+  # PR -> Stack, dec
+  # PC -> stack, dec
+  # A -> PR
+  # T -> PC
+  #
+  
+  
+  CALL:
+    value: 0xB5
+    steps:
+      3:
+        lines:
+          - SLO
+          - MLI
+      4:
+        lines:
+          - SHO
+          - MHI
+      5:
+        lines:
+          - MDO
+          - FI
+          - FSEL
           - SPE # Stack count default to up
       6:
         lines:
           - SCR
+  PUSH_#:
+    value: 0xB7
+    steps:
+      3:
+        lines:
+          - SLO
+          - MLI
+      4:
+        lines:
+          - SHO
+          - MHI
+      5:
+        lines:
+          - MDO
+          - FI
+          - FSEL
+          - SPE # Stack count default to up
+      6:
+        lines:
+          - SCR
+
+
   #
   # RETURN
   #
@@ -1631,7 +1769,7 @@ instructions:
         lines:
           - MDO
           - PCI
-          - SPE # Stack count default to up
+          - SPE # DOWN
       6:
         lines:
           - SLO

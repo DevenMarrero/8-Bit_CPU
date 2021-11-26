@@ -186,6 +186,18 @@ Registers:
 | 14 | OR                                 | False when only B is on PLUS A | False when only B is on PLUS A PLUS 1 |
 | 15 | A                                  | DEC                            | A |
 
+## ALU NOTES
+A + B; Lower ALU carry asserted (LOW) if carry
+
+A - B; Lower ALU carry clear (HIGH) if borrow
+
+When adding: Carry LOW means add 1
+
+When subtracting: Carry HIGH means subtract 1
+
+If there was a carry: Flag is LOW
+
+If there was a borrow: Flag is HIGH
 
 
 

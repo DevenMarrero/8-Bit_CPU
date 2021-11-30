@@ -76,6 +76,9 @@ instructions:
       3:
         lines:
           - HLT
+      4:
+        lines:
+          - SCR
   #
   # MOV
   #
@@ -134,6 +137,7 @@ instructions:
         lines:
           - MDO
           - AI
+          - PCE
       6:
         lines:
           - SCR
@@ -193,6 +197,7 @@ instructions:
         lines:
           - MDO
           - BI
+          - PCE
       6:
         lines:
           - SCR
@@ -252,6 +257,7 @@ instructions:
         lines:
           - MDO
           - CI
+          - PCE
       6:
         lines:
           - SCR
@@ -311,6 +317,7 @@ instructions:
         lines:
           - MDO
           - SLI
+          - PCE
       6:
         lines:
           - SCR
@@ -372,6 +379,7 @@ instructions:
         lines:
           - MDO
           - SHI
+          - PCE
       6:
         lines:
           - SCR
@@ -424,7 +432,6 @@ instructions:
       4:
         - flags:
             - zero: 0
-
           lines:
             - PCE
 
@@ -756,7 +763,6 @@ instructions:
         lines:
           - MDO
           - PCI
-          - PCE
       5:
         lines:
           - SCR
@@ -826,45 +832,35 @@ instructions:
           - MLI
       4:
         lines:
+          - PRO
+          - MHI
+      5:
+        lines:
           - MDO
           - PCBI
           - PCE
-      5:
+      6:
         lines:
           - PCO
           - MLI
-      6:
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
         lines:
           - MDO
           - MHI
           - PCE
-      7:
+      9:
         lines:
           - PCBO
           - MLI
-      8:
+      10:
         lines:
           - MDO
           - AI
-      9:
-        lines:
-          - SCR
-
-    value: 0x41
-    steps:
-      3:
-        lines:
-          - CO
-          - MLI
-      4:
-        lines:
-          - BO
-          - MHI
-      5:
-        lines:
-          - MDO
-          - AI
-      6:
+      11:
         lines:
           - SCR
 
@@ -913,27 +909,35 @@ instructions:
           - MLI
       4:
         lines:
+          - PRO
+          - MHI
+      5:
+        lines:
           - MDO
           - PCBI
           - PCE
-      5:
+      6:
         lines:
           - PCO
           - MLI
-      6:
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
         lines:
           - MDO
           - MHI
           - PCE
-      7:
+      9:
         lines:
           - PCBO
           - MLI
-      8:
+      10:
         lines:
           - MDO
           - BI
-      9:
+      11:
         lines:
           - SCR
 
@@ -982,27 +986,35 @@ instructions:
           - MLI
       4:
         lines:
+          - PRO
+          - MHI
+      5:
+        lines:
           - MDO
           - PCBI
           - PCE
-      5:
+      6:
         lines:
           - PCO
           - MLI
-      6:
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
         lines:
           - MDO
           - MHI
           - PCE
-      7:
+      9:
         lines:
           - PCBO
           - MLI
-      8:
+      10:
         lines:
           - MDO
           - CI
-      9:
+      11:
         lines:
           - SCR
 
@@ -1051,45 +1063,35 @@ instructions:
           - MLI
       4:
         lines:
+          - PRO
+          - MHI
+      5:
+        lines:
           - MDO
           - PCBI
           - PCE
-      5:
+      6:
         lines:
           - PCO
           - MLI
-      6:
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
         lines:
           - MDO
           - MHI
           - PCE
-      7:
+      9:
         lines:
           - PCBO
           - MLI
-      8:
+      10:
         lines:
           - MDO
           - SLI
-      9:
-        lines:
-          - SCR
-
-    value: 0x41
-    steps:
-      3:
-        lines:
-          - CO
-          - MLI
-      4:
-        lines:
-          - BO
-          - MHI
-      5:
-        lines:
-          - MDO
-          - AI
-      6:
+      11:
         lines:
           - SCR
 
@@ -1138,45 +1140,35 @@ instructions:
           - MLI
       4:
         lines:
+          - PRO
+          - MHI
+      5:
+        lines:
           - MDO
           - PCBI
           - PCE
-      5:
+      6:
         lines:
           - PCO
           - MLI
-      6:
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
         lines:
           - MDO
           - MHI
           - PCE
-      7:
+      9:
         lines:
           - PCBO
           - MLI
-      8:
+      10:
         lines:
           - MDO
           - SHI
-      9:
-        lines:
-          - SCR
-
-    value: 0x41
-    steps:
-      3:
-        lines:
-          - CO
-          - MLI
-      4:
-        lines:
-          - BO
-          - MHI
-      5:
-        lines:
-          - MDO
-          - AI
-      6:
+      11:
         lines:
           - SCR
 
@@ -1203,11 +1195,11 @@ instructions:
     steps:
       3:
         lines:
-          - PCO
+          - SLO
           - MLI
       4:
         lines:
-          - PRO
+          - SHO
           - MHI
       5:
         lines:
@@ -1225,45 +1217,35 @@ instructions:
           - MLI
       4:
         lines:
+          - PRO
+          - MHI
+      5:
+        lines:
           - MDO
           - PCBI
           - PCE
-      5:
+      6:
         lines:
           - PCO
           - MLI
-      6:
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
         lines:
           - MDO
           - MHI
           - PCE
-      7:
+      9:
         lines:
           - PCBO
           - MLI
-      8:
+      10:
         lines:
           - MDO
           - PCI
-      9:
-        lines:
-          - SCR
-
-    value: 0x41
-    steps:
-      3:
-        lines:
-          - CO
-          - MLI
-      4:
-        lines:
-          - BO
-          - MHI
-      5:
-        lines:
-          - MDO
-          - AI
-      6:
+      11:
         lines:
           - SCR
   #
@@ -1297,6 +1279,7 @@ instructions:
         lines:
           - MDO
           - MHI
+          - PCE
       9:
         lines:
           - PCBO
@@ -1760,18 +1743,18 @@ instructions:
           - PCO
           - MLI
       4:
-        lines: # high jump to T
+        lines: # low jump to PCB
           - MDO
-          - TI
+          - PCBI
           - PCE
       5:      # pc transfer
         lines:
           - PCO
           - MLI
       6:
-        lines: # low jump to PCB
+        lines: # high jump to T
           - MDO
-          - PCBI
+          - TI
           - PCE
           - SPE
           - U/D # stack down
@@ -1814,8 +1797,8 @@ instructions:
     steps:
       3:
         - flags:
-          - zero: 0
-        lines:
+            - zero: 0
+          lines:
           - SCR
         
         - flags:
@@ -1825,10 +1808,14 @@ instructions:
           - MLI
       4:
         - flags:
+          - zero: 0
+        lines:
+          - SCR
+        - flags:
             - zero: 1
           lines:
           - MDO
-          - TI
+          - PCBI
           - PCE
       5:
         - flags:
@@ -1841,7 +1828,7 @@ instructions:
             - zero: 1
           lines:
           - MDO
-          - PCBI
+          - TI
           - PCE
           - SPE
           - U/D # stack down
@@ -1889,7 +1876,7 @@ instructions:
           lines:
           - PCBO
           - PCI
-      13:
+      14:
         - flags:
             - zero: 1
           lines:
@@ -1914,7 +1901,7 @@ instructions:
             - carry: 1
           lines:
           - MDO
-          - TI
+          - PCBI
           - PCE
       5:
         - flags:
@@ -1927,7 +1914,7 @@ instructions:
             - carry: 1
           lines:
           - MDO
-          - PCBI
+          - TI
           - PCE
           - SPE
           - U/D # stack down
@@ -1975,7 +1962,7 @@ instructions:
           lines:
           - PCBO
           - PCI
-      13:
+      14:
         - flags:
             - carry: 1
           lines:
@@ -2000,7 +1987,7 @@ instructions:
             - negative: 1
           lines:
           - MDO
-          - TI
+          - PCBI
           - PCE
       5:
         - flags:
@@ -2013,7 +2000,7 @@ instructions:
             - negative: 1
           lines:
           - MDO
-          - PCBI
+          - TI
           - PCE
           - SPE
           - U/D # stack down
@@ -2061,7 +2048,7 @@ instructions:
           lines:
           - PCBO
           - PCI
-      13:
+      14:
         - flags:
             - negative: 1
           lines:
@@ -2086,7 +2073,7 @@ instructions:
             - zero: 0
           lines:
           - MDO
-          - TI
+          - PCBI
           - PCE
       5:
         - flags:
@@ -2099,7 +2086,7 @@ instructions:
             - zero: 0
           lines:
           - MDO
-          - PCBI
+          - TI
           - PCE
           - SPE
           - U/D # stack down
@@ -2147,7 +2134,7 @@ instructions:
           lines:
           - PCBO
           - PCI
-      13:
+      14:
         - flags:
             - zero: 0
           lines:
@@ -2172,7 +2159,7 @@ instructions:
             - carry: 0
           lines:
           - MDO
-          - TI
+          - PCBI
           - PCE
       5:
         - flags:
@@ -2185,7 +2172,7 @@ instructions:
             - carry: 0
           lines:
           - MDO
-          - PCBI
+          - TI
           - PCE
           - SPE
           - U/D # stack down
@@ -2233,7 +2220,7 @@ instructions:
           lines:
           - PCBO
           - PCI
-      13:
+      14:
         - flags:
             - carry: 0
           lines:
@@ -2258,7 +2245,7 @@ instructions:
             - negative: 0
           lines:
           - MDO
-          - TI
+          - PCBI
           - PCE
       5:
         - flags:
@@ -2271,7 +2258,7 @@ instructions:
             - negative: 0
           lines:
           - MDO
-          - PCBI
+          - TI
           - PCE
           - SPE
           - U/D # stack down
@@ -2319,7 +2306,7 @@ instructions:
           lines:
           - PCBO
           - PCI
-      13:
+      14:
         - flags:
             - negative: 0
           lines:
@@ -2343,7 +2330,7 @@ instructions:
         lines:
           - MDO
           - PCI
-          - SPE # DOWN
+          - SPE # UP
       6:
         lines:
           - SLO

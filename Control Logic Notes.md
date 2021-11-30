@@ -1,3 +1,14 @@
+## NOTES
+Add PR to Jumps
+
+Add PR to MOV_()_#
+
+Calls/Mov have 2 number 13
+
+Fix calls so they are little endian
+
+Stores need 2 PCE (Step 8)
+
 HLT
 
 MIH

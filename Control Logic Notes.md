@@ -1,7 +1,7 @@
 ## NOTES
 Add PR to Jumps
 
-Add PR to MOV_()_#
+Add PR to LOD_()_#
 
 Calls/Mov have 2 number 13
 

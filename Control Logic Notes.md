@@ -73,7 +73,7 @@ Idea 2: XOR all bits.
 |1  | RIGHT | LOW    | 00000001 | PRI  |  |Read bus into upper byte of program counter (page register) |
 |2  | RIGHT | LOW    | 00000002 | PCI  |  |Read bus into lower byte of program counter |
 |3  | RIGHT | LOW    | 00000003 | AI   |  | Read bus into `A` register |
-|4  | RIGHT | LOW    | 00000004 | FI   |  | Read flags from bus or ALU into flags register, indicated by `FSEL` |
+|4  | RIGHT | LOW    | 00000004 | FI   | BROKEN - MOVE TO DIRECT | Read flags from bus or ALU into flags register, indicated by `FSEL` |
 |5  | RIGHT | LOW    | 00000005 | TI   |  | Read bus into `Temp` register |
 |6  | RIGHT | LOW    | 00000006 | PRBI |  |Read bus into Page Register Buffer |
 |7  | RIGHT | LOW    | 00000007 | BI   |  | Read bus into `B` register |

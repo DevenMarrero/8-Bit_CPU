@@ -43,6 +43,7 @@ control_lines:
   SCR: 0x40000000
   HLT: 0x80000000
 
+# So far no use for this
 flags:
   - zero
   - carry
@@ -384,7 +385,7 @@ instructions:
         lines:
           - SCR
   #
-  # JUMPS - DOES NOT RE-COPY PR
+  # JUMPS - Do not put 2 PCE when the jmp executes
   #
   JMP:
     value: 0x2F
@@ -395,23 +396,30 @@ instructions:
           - MLI
       4:
         lines:
+          - PRO
+          - MHI
+      5:
+        lines:
           - MDO
           - PCBI
           - PCE
-      5:
+      6:
         lines:
           - PCO
           - MLI
-      6:
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
         lines:
           - MDO
           - PRI
-          - PCE
-      7:
+      9:
         lines:
           - PCBO
           - PCI
-      8:
+      10:
         lines:
           - SCR
   JZ:
@@ -438,9 +446,8 @@ instructions:
         - flags:
             - zero: 1
           lines:
-            - MDO
-            - PCBI
-            - PCE
+            - PRO
+            - MHI
       5:
         - flags:
             - zero: 0
@@ -450,22 +457,34 @@ instructions:
         - flags:
             - zero: 1
           lines:
+            - MDO
+            - PCBI
+            - PCE
+      6:
+        - flags:
+            - zero: 1
+          lines:
             - PCO
             - MLI
-      6:
+      7:
+        - flags:
+            - zero: 1
+          lines:
+            - PRO
+            - MHI
+      8:
         - flags:
             - zero: 1
           lines:
             - MDO
             - PRI
-            - PCE
-      7:
+      9:
         - flags:
             - zero: 1
           lines:
             - PCBO
             - PCI
-      8:
+      10:
         - flags:
             - zero: 1
           lines:
@@ -488,16 +507,14 @@ instructions:
       4:
         - flags:
             - carry: 0
-
           lines:
             - PCE
 
         - flags:
             - carry: 1
           lines:
-            - MDO
-            - PCBI
-            - PCE
+            - PRO
+            - MHI
       5:
         - flags:
             - carry: 0
@@ -507,22 +524,34 @@ instructions:
         - flags:
             - carry: 1
           lines:
+            - MDO
+            - PCBI
+            - PCE
+      6:
+        - flags:
+            - carry: 1
+          lines:
             - PCO
             - MLI
-      6:
+      7:
+        - flags:
+            - carry: 1
+          lines:
+            - PRO
+            - MHI
+      8:
         - flags:
             - carry: 1
           lines:
             - MDO
             - PRI
-            - PCE
-      7:
+      9:
         - flags:
             - carry: 1
           lines:
             - PCBO
             - PCI
-      8:
+      10:
         - flags:
             - carry: 1
           lines:
@@ -545,16 +574,14 @@ instructions:
       4:
         - flags:
             - negative: 0
-
           lines:
             - PCE
 
         - flags:
             - negative: 1
           lines:
-            - MDO
-            - PCBI
-            - PCE
+            - PRO
+            - MHI
       5:
         - flags:
             - negative: 0
@@ -564,22 +591,34 @@ instructions:
         - flags:
             - negative: 1
           lines:
+            - MDO
+            - PCBI
+            - PCE
+      6:
+        - flags:
+            - negative: 1
+          lines:
             - PCO
             - MLI
-      6:
+      7:
+        - flags:
+            - negative: 1
+          lines:
+            - PRO
+            - MHI
+      8:
         - flags:
             - negative: 1
           lines:
             - MDO
             - PRI
-            - PCE
-      7:
+      9:
         - flags:
             - negative: 1
           lines:
             - PCBO
             - PCI
-      8:
+      10:
         - flags:
             - negative: 1
           lines:
@@ -608,9 +647,8 @@ instructions:
         - flags:
             - zero: 0
           lines:
-            - MDO
-            - PCBI
-            - PCE
+            - PRO
+            - MHI
       5:
         - flags:
             - zero: 1
@@ -620,22 +658,34 @@ instructions:
         - flags:
             - zero: 0
           lines:
+            - MDO
+            - PCBI
+            - PCE
+      6:
+        - flags:
+            - zero: 0
+          lines:
             - PCO
             - MLI
-      6:
+      7:
+        - flags:
+            - zero: 0
+          lines:
+            - PRO
+            - MHI
+      8:
         - flags:
             - zero: 0
           lines:
             - MDO
             - PRI
-            - PCE
-      7:
+      9:
         - flags:
             - zero: 0
           lines:
             - PCBO
             - PCI
-      8:
+      10:
         - flags:
             - zero: 0
           lines:
@@ -664,9 +714,8 @@ instructions:
         - flags:
             - carry: 0
           lines:
-            - MDO
-            - PCBI
-            - PCE
+            - PRO
+            - MHI
       5:
         - flags:
             - carry: 1
@@ -676,22 +725,34 @@ instructions:
         - flags:
             - carry: 0
           lines:
+            - MDO
+            - PCBI
+            - PCE
+      6:
+        - flags:
+            - carry: 0
+          lines:
             - PCO
             - MLI
-      6:
+      7:
+        - flags:
+            - carry: 0
+          lines:
+            - PRO
+            - MHI
+      8:
         - flags:
             - carry: 0
           lines:
             - MDO
             - PRI
-            - PCE
-      7:
+      9:
         - flags:
             - carry: 0
           lines:
             - PCBO
             - PCI
-      8:
+      10:
         - flags:
             - carry: 0
           lines:
@@ -720,9 +781,8 @@ instructions:
         - flags:
             - negative: 0
           lines:
-            - MDO
-            - PCBI
-            - PCE
+            - PRO
+            - MHI
       5:
         - flags:
             - negative: 1
@@ -732,22 +792,34 @@ instructions:
         - flags:
             - negative: 0
           lines:
+            - MDO
+            - PCBI
+            - PCE
+      6:
+        - flags:
+            - negative: 0
+          lines:
             - PCO
             - MLI
-      6:
+      7:
+        - flags:
+            - negative: 0
+          lines:
+            - PRO
+            - MHI
+      8:
         - flags:
             - negative: 0
           lines:
             - MDO
             - PRI
-            - PCE
-      7:
+      9:
         - flags:
             - negative: 0
           lines:
             - PCBO
             - PCI
-      8:
+      10:
         - flags:
             - negative: 0
           lines:
@@ -827,7 +899,7 @@ instructions:
     value: 0x47
     steps:
       3:
-        lines:
+        lines: # transfer
           - PCO
           - MLI
       4:
@@ -835,12 +907,12 @@ instructions:
           - PRO
           - MHI
       5:
-        lines:
+        lines: # low addr
           - MDO
           - PCBI
           - PCE
       6:
-        lines:
+        lines: # transfer
           - PCO
           - MLI
       7:
@@ -848,7 +920,7 @@ instructions:
           - PRO
           - MHI
       8:
-        lines:
+        lines: # high addr
           - MDO
           - MHI
           - PCE
@@ -1195,11 +1267,11 @@ instructions:
     steps:
       3:
         lines:
-          - SLO
+          - PCO
           - MLI
       4:
         lines:
-          - SHO
+          - PRO
           - MHI
       5:
         lines:
@@ -1255,20 +1327,20 @@ instructions:
     value: 0xB8
     steps:
       3:
-        lines:
-         - PCO
-         - MLI
+        lines: # transfer
+          - PCO
+          - MLI
       4:
         lines:
           - PRO
           - MHI
       5: 
-        lines:
+        lines: # low addr
           - MDO
           - PCBI
           - PCE
       6:
-        lines:
+        lines: # transfer
           - PCO
           - MLI
       7:
@@ -1276,7 +1348,7 @@ instructions:
           - PRO
           - MHI
       8:
-        lines:
+        lines: # high addr
           - MDO
           - MHI
           - PCE
@@ -1296,8 +1368,8 @@ instructions:
     steps:
       3:
         lines:
-         - PCO
-         - MLI
+          - PCO
+          - MLI
       4:
         lines:
           - PRO
@@ -1319,6 +1391,7 @@ instructions:
         lines:
           - MDO
           - MHI
+          - PCE
       9:
         lines:
           - PCBO
@@ -1335,8 +1408,8 @@ instructions:
     steps:
       3:
         lines:
-         - PCO
-         - MLI
+          - PCO
+          - MLI
       4:
         lines:
           - PRO
@@ -1358,6 +1431,7 @@ instructions:
         lines:
           - MDO
           - MHI
+          - PCE
       9:
         lines:
           - PCBO
@@ -1374,8 +1448,8 @@ instructions:
     steps:
       3:
         lines:
-         - PCO
-         - MLI
+          - PCO
+          - MLI
       4:
         lines:
           - PRO
@@ -1397,6 +1471,7 @@ instructions:
         lines:
           - MDO
           - MHI
+          - PCE
       9:
         lines:
           - PCBO
@@ -1436,6 +1511,7 @@ instructions:
         lines:
           - MDO
           - MHI
+          - PCE
       9:
         lines:
           - PCBO
@@ -1475,6 +1551,7 @@ instructions:
         lines:
           - MDO
           - MHI
+          - PCE
       9:
         lines:
           - PCBO
@@ -1514,6 +1591,7 @@ instructions:
         lines:
           - MDO
           - MHI
+          - PCE
       9:
         lines:
           - PCBO
@@ -1523,6 +1601,212 @@ instructions:
           - PRO
           - MDI
       11:
+        lines:
+          - SCR
+  
+  STO_[BC]_A:
+    value: 0x88
+    steps:
+      3:
+        lines:
+          - BO
+          - MHI
+      4:
+        lines:
+          - CO
+          - MLI
+      5:
+        lines:
+          - AO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[BC]_SPL:
+    value: 0x8B
+    steps:
+      3:
+        lines:
+          - BO
+          - MHI
+      4:
+        lines:
+          - CO
+          - MLI
+      5:
+        lines:
+          - SLO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[BC]_SPH:
+    value: 0x8C
+    steps:
+      3:
+        lines:
+          - BO
+          - MHI
+      4:
+        lines:
+          - CO
+          - MLI
+      5:
+        lines:
+          - SHO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[BC]_PC:
+    value: 0x8D
+    steps:
+      3:
+        lines:
+          - BO
+          - MHI
+      4:
+        lines:
+          - CO
+          - MLI
+      5:
+        lines:
+          - PCO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[BC]_#:
+    value: 0x8F
+    steps:
+      3:
+        lines:
+          - PCO
+          - MLI
+      4:
+        lines:
+          - PRO
+          - MHI
+      5:
+        lines:
+          - MDO
+          - TI
+      6:
+        lines:
+          - BO
+          - MHI
+      7:
+        lines:
+          - CO
+          - MLI
+      8:
+        lines:
+          - TO
+          - MDI
+      9:
+        lines:
+          - SCR
+  
+  STO_[DE]_A:
+    value: 0x98
+    steps:
+      3:
+        lines:
+          - SHO
+          - MHI
+      4:
+        lines:
+          - SLO
+          - MLI
+      5:
+        lines:
+          - AO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[DE]_B:
+    value: 0x99
+    steps:
+      3:
+        lines:
+          - SHO
+          - MHI
+      4:
+        lines:
+          - SLO
+          - MLI
+      5:
+        lines:
+          - BO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[DE]_C:
+    value: 0x9A
+    steps:
+      3:
+        lines:
+          - SHO
+          - MHI
+      4:
+        lines:
+          - SLO
+          - MLI
+      5:
+        lines:
+          - CO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[DE]_PC:
+    value: 0x9D
+    steps:
+      3:
+        lines:
+          - SHO
+          - MHI
+      4:
+        lines:
+          - SLO
+          - MLI
+      5:
+        lines:
+          - PCO
+          - MDI
+      6:
+        lines:
+          - SCR
+  STO_[DE]_#:
+    value: 0x9F
+    steps:
+      3:
+        lines:
+          - PCO
+          - MLI
+      4:
+        lines:
+          - PRO
+          - MHI
+      5:
+        lines:
+          - MDO
+          - TI
+      6:
+        lines:
+          - SHO
+          - MHI
+      7:
+        lines:
+          - SLO
+          - MLI
+      8:
+        lines:
+          - TO
+          - MDI
+      9:
         lines:
           - SCR
   #
@@ -1733,8 +2017,7 @@ instructions:
   # PC -> stack
   # T -> PR
   # PCB -> PC
-  #
-   
+  #  
   CALL:
     value: 0xB5
     steps:
@@ -1799,83 +2082,88 @@ instructions:
         - flags:
             - zero: 0
           lines:
-          - SCR
+            - PCE
         
         - flags:
             - zero: 1
           lines:
-          - PCO
-          - MLI
+            - PCO
+            - MLI
       4:
         - flags:
-          - zero: 0
-        lines:
-          - SCR
+            - zero: 0
+          lines:
+            - PCE
+
         - flags:
             - zero: 1
           lines:
-          - MDO
-          - PCBI
-          - PCE
+            - MDO
+            - PCBI
+            - PCE
       5:
         - flags:
+            - zero: 0
+          lines:
+            - SCR
+        - flags:
             - zero: 1
           lines:
-          - PCO
-          - MLI
+            - PCO
+            - MLI
       6:
         - flags:
             - zero: 1
           lines:
-          - MDO
-          - TI
-          - PCE
-          - SPE
-          - U/D # stack down
+            - MDO
+            - TI
+            - PCE
+            - SPE
+            - U/D # stack down
       7:
         - flags:
             - zero: 1
           lines:
-          - SHO
-          - MHI
+            - SHO
+            - MHI
       8:
         - flags:
             - zero: 1
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       9:
         - flags:
             - zero: 1
           lines:
-          - PRO
-          - MDI
-          - SPE
-          - U/D # stack down
+            - PRO
+            - MDI
+            - SPE
+            - U/D # stack down
       10:
         - flags:
             - zero: 1
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       11:
         - flags:
             - zero: 1
           lines:
-          - PCO
-          - MDI
+            - PCO
+            - MDI
       12:
         - flags:
             - zero: 1
           lines:
-          - TO
-          - PRI
+            - TO
+            - PRI
       13:
         - flags:
             - zero: 1
           lines:
-          - PCBO
-          - PCI
+            - PCBO
+            - PCI
       14:
         - flags:
             - zero: 1
@@ -1887,167 +2175,186 @@ instructions:
     steps:
       3:
         - flags:
-          - carry: 0
-        lines:
-          - SCR
+            - carry: 0
+          lines:
+            - PCE
         
         - flags:
             - carry: 1
           lines:
-          - PCO
-          - MLI
+            - PCO
+            - MLI
       4:
         - flags:
-            - carry: 1
+            - carry: 0
           lines:
-          - MDO
-          - PCBI
-          - PCE
-      5:
+            - PCE
+
         - flags:
             - carry: 1
           lines:
-          - PCO
-          - MLI
+            - MDO
+            - PCBI
+            - PCE
+      5:
+        - flags:
+            - carry: 0
+          lines:
+            - SCR
+        - flags:
+            - carry: 1
+          lines:
+            - PCO
+            - MLI
       6:
         - flags:
             - carry: 1
           lines:
-          - MDO
-          - TI
-          - PCE
-          - SPE
-          - U/D # stack down
+            - MDO
+            - TI
+            - PCE
+            - SPE
+            - U/D # stack down
       7:
         - flags:
             - carry: 1
           lines:
-          - SHO
-          - MHI
+            - SHO
+            - MHI
       8:
         - flags:
             - carry: 1
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       9:
         - flags:
             - carry: 1
           lines:
-          - PRO
-          - MDI
-          - SPE
-          - U/D # stack down
+            - PRO
+            - MDI
+            - SPE
+            - U/D # stack down
       10:
         - flags:
             - carry: 1
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       11:
         - flags:
             - carry: 1
           lines:
-          - PCO
-          - MDI
+            - PCO
+            - MDI
       12:
         - flags:
             - carry: 1
           lines:
-          - TO
-          - PRI
+            - TO
+            - PRI
       13:
         - flags:
             - carry: 1
           lines:
-          - PCBO
-          - PCI
+            - PCBO
+            - PCI
       14:
         - flags:
             - carry: 1
           lines:
-            - SCR
+              - SCR
   CALN:
     value: 0xA0
     flag_inst: True
     steps:
       3:
         - flags:
-          - negative: 0
-        lines:
-          - SCR
+            - negative: 0
+          lines:
+            - PCE
         
         - flags:
             - negative: 1
           lines:
-          - PCO
-          - MLI
+            - PCO
+            - MLI
       4:
         - flags:
-            - negative: 1
+            - negative: 0
           lines:
-          - MDO
-          - PCBI
-          - PCE
-      5:
+            - PCE
+    
         - flags:
             - negative: 1
           lines:
-          - PCO
-          - MLI
+            - MDO
+            - PCBI
+            - PCE
+      5:
+        - flags:
+            - negative: 0
+          lines:
+            - SCR
+
+        - flags:
+            - negative: 1
+          lines:
+            - PCO
+            - MLI
       6:
         - flags:
             - negative: 1
           lines:
-          - MDO
-          - TI
-          - PCE
-          - SPE
-          - U/D # stack down
+            - MDO
+            - TI
+            - PCE
+            - SPE
+            - U/D # stack down
       7:
         - flags:
             - negative: 1
           lines:
-          - SHO
-          - MHI
+            - SHO
+            - MHI
       8:
         - flags:
             - negative: 1
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       9:
         - flags:
             - negative: 1
           lines:
-          - PRO
-          - MDI
-          - SPE
-          - U/D # stack down
+            - PRO
+            - MDI
+            - SPE
+            - U/D # stack down
       10:
         - flags:
             - negative: 1
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       11:
         - flags:
             - negative: 1
           lines:
-          - PCO
-          - MDI
+            - PCO
+            - MDI
       12:
         - flags:
             - negative: 1
           lines:
-          - TO
-          - PRI
+            - TO
+            - PRI
       13:
         - flags:
             - negative: 1
           lines:
-          - PCBO
-          - PCI
+            - PCBO
+            - PCI
       14:
         - flags:
             - negative: 1
@@ -2059,81 +2366,91 @@ instructions:
     steps:
       3:
         - flags:
-          - zero: 1
-        lines:
-          - SCR
+            - zero: 1
+          lines:
+            - PCE
         
         - flags:
             - zero: 0
           lines:
-          - PCO
-          - MLI
+            - PCO
+            - MLI
       4:
         - flags:
-            - zero: 0
+            - zero: 1
           lines:
-          - MDO
-          - PCBI
-          - PCE
-      5:
+            - PCE
+
         - flags:
             - zero: 0
           lines:
-          - PCO
-          - MLI
+            - MDO
+            - PCBI
+            - PCE
+      5:
+        - flags:
+            - zero: 1
+          lines:
+            - SCR
+
+        - flags:
+            - zero: 0
+          lines:
+            - PCO
+            - MLI
       6:
         - flags:
             - zero: 0
           lines:
-          - MDO
-          - TI
-          - PCE
-          - SPE
-          - U/D # stack down
+            - MDO
+            - TI
+            - PCE
+            - SPE
+            - U/D # stack down
       7:
         - flags:
             - zero: 0
           lines:
-          - SHO
-          - MHI
+            - SHO
+            - MHI
       8:
         - flags:
             - zero: 0
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       9:
         - flags:
             - zero: 0
           lines:
-          - PRO
-          - MDI
-          - SPE
-          - U/D # stack down
+            - PRO
+            - MDI
+            - SPE
+            - U/D # stack down
       10:
         - flags:
             - zero: 0
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       11:
         - flags:
             - zero: 0
           lines:
-          - PCO
-          - MDI
+            - PCO
+            - MDI
       12:
         - flags:
             - zero: 0
           lines:
-          - TO
-          - PRI
+            - TO
+            - PRI
       13:
         - flags:
             - zero: 0
           lines:
-          - PCBO
-          - PCI
+            - PCBO
+            - PCI
       14:
         - flags:
             - zero: 0
@@ -2145,81 +2462,91 @@ instructions:
     steps:
       3:
         - flags:
-          - carry: 1
-        lines:
-          - SCR
+            - carry: 1
+          lines:
+            - PCE
         
         - flags:
             - carry: 0
           lines:
-          - PCO
-          - MLI
+            - PCO
+            - MLI
       4:
         - flags:
-            - carry: 0
+            - carry: 1
           lines:
-          - MDO
-          - PCBI
-          - PCE
-      5:
+            - PCE
+
         - flags:
             - carry: 0
           lines:
-          - PCO
-          - MLI
+            - MDO
+            - PCBI
+            - PCE
+      5:
+        - flags:
+            - carry: 1
+          lines:
+            - SCR
+
+        - flags:
+            - carry: 0
+          lines:
+            - PCO
+            - MLI
       6:
         - flags:
             - carry: 0
           lines:
-          - MDO
-          - TI
-          - PCE
-          - SPE
-          - U/D # stack down
+            - MDO
+            - TI
+            - PCE
+            - SPE
+            - U/D # stack down
       7:
         - flags:
             - carry: 0
           lines:
-          - SHO
-          - MHI
+            - SHO
+            - MHI
       8:
         - flags:
             - carry: 0
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       9:
         - flags:
             - carry: 0
           lines:
-          - PRO
-          - MDI
-          - SPE
-          - U/D # stack down
+            - PRO
+            - MDI
+            - SPE
+            - U/D # stack down
       10:
         - flags:
             - carry: 0
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       11:
         - flags:
             - carry: 0
           lines:
-          - PCO
-          - MDI
+            - PCO
+            - MDI
       12:
         - flags:
             - carry: 0
           lines:
-          - TO
-          - PRI
+            - TO
+            - PRI
       13:
         - flags:
             - carry: 0
           lines:
-          - PCBO
-          - PCI
+            - PCBO
+            - PCI
       14:
         - flags:
             - carry: 0
@@ -2231,81 +2558,91 @@ instructions:
     steps:
       3:
         - flags:
-          - negative: 1
-        lines:
-          - SCR
+            - negative: 1
+          lines:
+            - PCE
         
         - flags:
             - negative: 0
           lines:
-          - PCO
-          - MLI
+            - PCO
+            - MLI
       4:
         - flags:
-            - negative: 0
+            - negative: 1
           lines:
-          - MDO
-          - PCBI
-          - PCE
-      5:
+            - PCE
+
         - flags:
             - negative: 0
           lines:
-          - PCO
-          - MLI
+            - MDO
+            - PCBI
+            - PCE
+      5:
+        - flags:
+            - negative: 1
+          lines:
+            - SCR
+
+        - flags:
+            - negative: 0
+          lines:
+            - PCO
+            - MLI
       6:
         - flags:
             - negative: 0
           lines:
-          - MDO
-          - TI
-          - PCE
-          - SPE
-          - U/D # stack down
+            - MDO
+            - TI
+            - PCE
+            - SPE
+            - U/D # stack down
       7:
         - flags:
             - negative: 0
           lines:
-          - SHO
-          - MHI
+            - SHO
+            - MHI
       8:
         - flags:
             - negative: 0
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       9:
         - flags:
             - negative: 0
           lines:
-          - PRO
-          - MDI
-          - SPE
-          - U/D # stack down
+            - PRO
+            - MDI
+            - SPE
+            - U/D # stack down
       10:
         - flags:
             - negative: 0
           lines:
-          - SLO
-          - MLI
+            - SLO
+            - MLI
       11:
         - flags:
             - negative: 0
           lines:
-          - PCO
-          - MDI
+            - PCO
+            - MDI
       12:
         - flags:
             - negative: 0
           lines:
-          - TO
-          - PRI
+            - TO
+            - PRI
       13:
         - flags:
             - negative: 0
           lines:
-          - PCBO
-          - PCI
+            - PCBO
+            - PCI
       14:
         - flags:
             - negative: 0
@@ -2330,7 +2667,7 @@ instructions:
         lines:
           - MDO
           - PCI
-          - SPE # UP
+          - SPE # DOWN
       6:
         lines:
           - SLO
@@ -2626,7 +2963,7 @@ instructions:
   # carry set high
   ADD_B:
     # HLLH L
-    value: 0xC4
+    value: 0xC0
     steps:
       3:
         lines:
@@ -2643,7 +2980,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -2656,12 +2993,12 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       8:
         lines:
           - SCR
   ADD_C:
-    value: 0xC5
+    value: 0xC1
     steps:
       3:
         lines:
@@ -2678,7 +3015,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -2691,12 +3028,12 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       8:
         lines:
           - SCR
   ADD_#:
-    value: 0xC6
+    value: 0xC2
     steps:
       3:
         lines:
@@ -2713,7 +3050,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -2735,12 +3072,12 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       10:
         lines:
           - SCR
   ADD_[#]:
-    value: 0xC7
+    value: 0xC3
     steps:
       3:
         lines:
@@ -2757,7 +3094,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -2800,7 +3137,7 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       15:
         lines:
           - SCR
@@ -2820,7 +3157,7 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -2837,7 +3174,7 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -2863,7 +3200,7 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       7:
         lines:
           - SCR
@@ -2910,10 +3247,229 @@ instructions:
           - ALU3
           - EO
           - AI
-          - FI
+          - FI # Broken
       12:
         lines:
           - SCR
+
+  # carry set low
+  SUB_B:
+    # LHHL L
+    value: 0xC8
+    steps:
+      3: # set carry
+        lines:
+          - AO
+          - PCBI
+      4:
+        lines:
+          # HHLL H logical 1
+          - ALU2
+          - ALU3
+          - ALUM
+          - EO
+          - AI
+      5:
+        lines:
+          # LLHH H logical 0
+          - ALU0
+          - ALU1
+          - ALUM
+          - EO
+          - TI
+      6:
+        lines:
+          # LHHL L A minus B minus 1
+          - ALU1
+          - ALU2
+          - FI # Broken
+          - PCBO
+          - AI
+      7:
+        lines:
+          - BO
+          - TI
+      8:
+        lines:
+          - ALU1
+          - ALU2
+          - EO
+          - AI
+          - FI # Broken
+      9:
+        lines:
+          - SCR
+  SUB_C:
+    value: 0xC9
+    steps:
+      3: # set carry
+        lines:
+          - AO
+          - PCBI
+      4:
+        lines:
+          # HHLL H logical 1
+          - ALU2
+          - ALU3
+          - ALUM
+          - EO
+          - AI
+      5:
+        lines:
+          # LLHH H logical 0
+          - ALU0
+          - ALU1
+          - ALUM
+          - EO
+          - TI
+      6:
+        lines:
+          # LHHL L A minus B minus 1
+          - ALU1
+          - ALU2
+          - FI # Broken
+          - PCBO
+          - AI
+      7:
+        lines:
+          - CO
+          - TI
+      8:
+        lines:
+          - ALU1
+          - ALU2
+          - EO
+          - AI
+          - FI # Broken
+      9:
+        lines:
+          - SCR
+  SUB_#:
+    value: 0xCA
+    steps:
+      3: # set carry
+        lines:
+          - AO
+          - PCBI
+      4:
+        lines:
+          # HHLL H logical 1
+          - ALU2
+          - ALU3
+          - ALUM
+          - EO
+          - AI
+      5:
+        lines:
+          # LLHH H logical 0
+          - ALU0
+          - ALU1
+          - ALUM
+          - EO
+          - TI
+      6:
+        lines:
+          # LHHL L A minus B minus 1
+          - ALU1
+          - ALU2
+          - FI # Broken
+          - PCBO
+          - AI
+      7:
+        lines:
+          - PCO
+          - MLI
+      8:
+        lines:
+          - PRO
+          - MHI
+      9:
+        lines:
+          - MDO
+          - TI
+          - PCE
+      10:
+        lines:
+          - ALU1
+          - ALU2
+          - EO
+          - AI
+          - FI # Broken
+      11:
+        lines:
+          - SCR
+  SUB_[#]:
+    value: 0xCB
+    steps:
+      3: # set carry
+        lines:
+          - AO
+          - PCBI
+      4:
+        lines:
+          # HHLL H logical 1
+          - ALU2
+          - ALU3
+          - ALUM
+          - EO
+          - AI
+      5:
+        lines:
+          # LLHH H logical 0
+          - ALU0
+          - ALU1
+          - ALUM
+          - EO
+          - TI
+      6:
+        lines:
+          # LHHL L A minus B minus 1
+          - ALU1
+          - ALU2
+          - FI # Broken
+          - PCBO
+          - AI
+      7:
+        lines:
+          - PCO
+          - MLI
+      8:
+        lines:
+          - PRO
+          - MHI
+      9:
+        lines:
+          - MDO
+          - PCBI
+          - PCE
+      10:
+        lines:
+          - PCO
+          - MLI
+      11:
+        lines:
+          - PRO
+          - MHI
+      12:
+        lines:
+          - MDO
+          - MHI
+      13:
+        lines:
+          - PCBO
+          - MLI
+      14:
+        lines:
+          - MDO
+          - TI
+          - PCE
+      15:
+        lines:
+          - ALU1
+          - ALU2
+          - EO
+          - AI
+          - FI # Broken
 
   # Subtract 1 from result if carry high
   SBB_B:
@@ -2930,7 +3486,7 @@ instructions:
           - ALU2
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -2947,7 +3503,7 @@ instructions:
           - ALU2
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -2973,7 +3529,7 @@ instructions:
           - ALU2
           - EO
           - AI
-          - FI
+          - FI # Broken
       7:
         lines:
           - SCR
@@ -3020,7 +3576,7 @@ instructions:
           - ALU2
           - EO
           - AI
-          - FI
+          - FI # Broken
       12:
         lines:
           - SCR
@@ -3042,7 +3598,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -3061,7 +3617,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -3089,7 +3645,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       7:
         lines:
           - SCR
@@ -3138,7 +3694,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       12:
         lines:
           - SCR
@@ -3159,7 +3715,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -3178,7 +3734,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -3206,7 +3762,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       7:
         lines:
           - SCR
@@ -3255,7 +3811,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       12:
         lines:
           - SCR
@@ -3275,7 +3831,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -3293,7 +3849,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       5:
         lines:
           - SCR
@@ -3320,7 +3876,7 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       7:
         lines:
           - SCR
@@ -3368,12 +3924,12 @@ instructions:
           - ALUM
           - EO
           - AI
-          - FI
+          - FI # Broken
       12:
         lines:
           - SCR
 
-  # Carry must be low
+  # Carry set low
   INC_A:
     value: 0xDC
     steps:
@@ -3402,7 +3958,7 @@ instructions:
           # LHHL L A minus B minus 1
           - ALU1
           - ALU2
-          - FI
+          - FI # Broken
           - PCBO
           - AI
       7:
@@ -3441,7 +3997,7 @@ instructions:
           # LHHL L A minus B minus 1
           - ALU1
           - ALU2
-          - FI
+          - FI # Broken
           - BO
           - AI
       7:
@@ -3483,7 +4039,7 @@ instructions:
           # LHHL L A minus B minus 1
           - ALU1
           - ALU2
-          - FI
+          - FI # Broken
           - CO
           - AI
       7:
@@ -3547,7 +4103,7 @@ instructions:
           # LHHL L A minus B minus 1
           - ALU1
           - ALU2
-          - FI
+          - FI # Broken
           - MDO
           - AI
       11:
@@ -3581,7 +4137,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -3591,7 +4147,7 @@ instructions:
           - ALU1
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       7:
@@ -3615,7 +4171,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - BO
           - AI
       6:
@@ -3625,7 +4181,7 @@ instructions:
           - ALU1
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - BI
       7:
@@ -3653,7 +4209,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - CO
           - AI
       6:
@@ -3663,7 +4219,7 @@ instructions:
           - ALU1
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - CI
       7:
@@ -3713,7 +4269,7 @@ instructions:
       10:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - MDO
           - AI
       11:
@@ -3979,7 +4535,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -3987,7 +4543,7 @@ instructions:
           # HHLL L A plus A
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       7:
@@ -4011,7 +4567,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -4019,7 +4575,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       7:
@@ -4027,7 +4583,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       8:
@@ -4035,7 +4591,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       9:
@@ -4043,7 +4599,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       10:
@@ -4051,7 +4607,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       11:
@@ -4059,7 +4615,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       12:
@@ -4067,7 +4623,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       13:
@@ -4075,7 +4631,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       14:
@@ -4099,7 +4655,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:
@@ -4107,7 +4663,7 @@ instructions:
           # HHLL L A plus A
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       7:
@@ -4115,16 +4671,17 @@ instructions:
           # LLLL L A plus carry
           - EO
           - AI
-          - FI
+          - FI # Broken
       8:
         lines:
           - SCR
-  
+  # NOT IMPLEMENTED
   ROR:
     value: 0xEC
     steps:
       3:
         lines:
+          - SCR
   # Carry defines what is rotated to bottom - Manually clear carry 1st time
   RCL:
     value: 0xED
@@ -4134,7 +4691,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
   RCR:
@@ -4145,7 +4702,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       3:
@@ -4153,7 +4710,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       3:
@@ -4161,7 +4718,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       3:
@@ -4169,7 +4726,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       3:
@@ -4177,7 +4734,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       3:
@@ -4185,7 +4742,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       3:
@@ -4193,7 +4750,7 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
       3:
@@ -4201,11 +4758,84 @@ instructions:
           # HHLL L A plus A + Carry
           - ALU2
           - ALU3
-          - FI
+          - FI # Broken
           - EO
           - AI
    
-  
+  BIT_#:
+    value: 0xEF
+    steps:
+      3:
+        lines:
+          - PCO
+          - MLI
+      4:
+        lines:
+          - PRO
+          - MHI
+      5:
+        lines:
+          - MDO
+          - BI
+          - PCE
+      6:
+        lines:
+          - ALU0
+          - ALU1
+          - ALU3
+          - ALUM
+          - FI
+      7:
+        lines:
+          - SCR
+  BIT_[#]:
+    value: 0xF0
+    steps:
+      3:
+        lines:
+          - PCO
+          - MLI
+      4:
+        lines:
+          - PRO
+          - MHI
+      5:
+        lines:
+          - MDO
+          - PCBI
+          - PCE
+      6:
+        lines:
+          - PCO
+          - MLI
+      7:
+        lines:
+          - PRO
+          - MHI
+      8:
+        lines:
+          - MDO
+          - MHI
+          - PCE
+      9:
+        lines:
+          - PCBO
+          - MLI
+      10:
+        lines:
+          - MDO
+          - BI
+      11:
+        lines:
+          - ALU0
+          - ALU1
+          - ALU3
+          - ALUM
+          - FI
+      12:
+        lines:
+          - SCR
+
   # Carry LOW 
   STC:
     value: 0xF1
@@ -4235,7 +4865,7 @@ instructions:
           # LHHL L A minus B minus 1
           - ALU1
           - ALU2
-          - FI
+          - FI # Broken
           - PCBO
           - AI
       7:
@@ -4243,7 +4873,7 @@ instructions:
           - SCR
   # Carry HIGH
   CLC:
-    value: 0xF4
+    value: 0xF2
     steps:
       3:
         lines:
@@ -4260,7 +4890,7 @@ instructions:
       5:
         lines:
           # LLLL L A
-          - FI
+          - FI # Broken
           - TO
           - AI
       6:

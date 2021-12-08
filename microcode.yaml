@@ -4118,7 +4118,7 @@ instructions:
         lines:
           - SCR
 
-  # Carry set high
+  # Carry clear
   DEC_A:
     value: 0xE0
     steps:
@@ -4289,106 +4289,94 @@ instructions:
         lines:
           - SCR
 
-  # Carry set low
+  # Carry set - Done
   CMP_B:
     value: 0xE4
     steps:
-      3: # Set carry
-        lines:
-          - AO
-          - PCBI
-      4:
+      3:
         lines:
           # HHLL H logical 1
           - ALU2
           - ALU3
           - ALUM
           - EO
-          - AI
-      5:
-        lines:
-          # LLHH H logical 0
-          - ALU0
-          - ALU1
-          - ALUM
-          - EO
-          - TI
-      6:
-        lines:
-          # LHHL L A minus B minus 1
-          - ALU1
-          - ALU2
           - FI
-      7:
-        lines:
-          - PCBO
-          - AI
-      8:
+          - FSEL
+      4:
         lines:
           - BO
           - TI
-      9:
+      5:
         lines:
           # LHHL L A minus B
           - ALU1
           - ALU2
           - FI
-      10:
+      6:
         lines:
           - SCR
   CMP_C:
     value: 0xE5
     steps:
-      3: # Set carry
-        lines:
-          - AO
-          - PCBI
-      4:
+      3:
         lines:
           # HHLL H logical 1
           - ALU2
           - ALU3
           - ALUM
           - EO
-          - AI
-      5:
-        lines:
-          # LLHH H logical 0
-          - ALU0
-          - ALU1
-          - ALUM
-          - EO
-          - TI
-      6:
-        lines:
-          # LHHL L A minus B minus 1
-          - ALU1
-          - ALU2
           - FI
-      7:
-        lines:
-          - PCBO
-          - AI
-      8:
+          - FSEL
+      4:
         lines:
           - CO
           - TI
-      9:
+      5:
         lines:
           # LHHL L A minus B
           - ALU1
           - ALU2
           - FI
-      10:
+      6:
         lines:
           - SCR
   CMP_#:
     value: 0xE4
     steps:
-      3: # Set carry
+      3:
         lines:
-          - AO
-          - PCBI
+          # HHLL H logical 1
+          - ALU2
+          - ALU3
+          - ALUM
+          - EO
+          - FI
+          - FSEL
+      4:
+        lines:
+          - PCO
+          - MLI
+      5:
+        lines:
+          - PRO
+          - MHI
+      6:
+        lines:
+          - MDO
+          - TI
+          - PCE
+      7:
+        lines:
+          # LHHL L A minus B
+          - ALU1
+          - ALU2
+          - FI
+      8:
+        lines:
+          - SCR
+  CMP_[#]:
+    value: 0xE4
+    steps:
       4:
         lines:
           # HHLL H logical 1
@@ -4396,25 +4384,21 @@ instructions:
           - ALU3
           - ALUM
           - EO
-          - AI
+          - FI
+          - FSEL
       5:
         lines:
-          # LLHH H logical 0
-          - ALU0
-          - ALU1
-          - ALUM
-          - EO
-          - TI
+          - PCO
+          - MLI
       6:
         lines:
-          # LHHL L A minus B minus 1
-          - ALU1
-          - ALU2
-          - FI
+          - PRO
+          - MHI
       7:
         lines:
-          - PCBO
-          - AI
+          - MDO
+          - PCBI
+          - PCE
       8:
         lines:
           - PCO
@@ -4426,82 +4410,25 @@ instructions:
       10:
         lines:
           - MDO
-          - TI
-          - PCE
-      11:
-        lines:
-          # LHHL L A minus B
-          - ALU1
-          - ALU2
-          - FI
-      12:
-        lines:
-          - SCR
-  CMP_[#]:
-    value: 0xE4
-    steps:
-      3: # Set carry
-        lines:
-          - AO
-          - PCBI
-      4:
-        lines:
-          # HHLL H logical 1
-          - ALU2
-          - ALU3
-          - ALUM
-          - EO
-          - AI
-      5:
-        lines:
-          # LLHH H logical 0
-          - ALU0
-          - ALU1
-          - ALUM
-          - EO
-          - TI
-      6:
-        lines:
-          # LHHL L A minus B minus 1
-          - ALU1
-          - ALU2
-          - FI
-      7:
-        lines:
-          - PCBO
-          - AI
-      8:
-        lines:
-          - PCO
-          - MLI
-      10:
-        lines:
-          - MDO
-          - PCBI
-          - PCE
-      11:
-        lines:
-          - PCO
-          - MLI
-      12:
-        lines:
-          - MDO
           - MHI
           - PCE
-      13:
+      11:
         lines:
           - PCBO
           - MLI
-      14:
+      12:
         lines:
           - MDO
           - TI
-      15:
+      13:
         lines:
           # LHHL L A minus B
           - ALU1
           - ALU2
           - FI
+      14:
+        lines:
+          - SCR
   
   # Carry does not matter
   NOTA:
@@ -4516,29 +4443,20 @@ instructions:
         lines:
           - SCR
   
-  # Carry set high
+  # Carry clear - Done
   SHL:
     value: 0xE9
     steps:
       3:
-        lines:
-          - AO
-          - TI
-      4:
         lines:
           # LLHH H logical 0
           - ALU0
           - ALU1
           - ALUM
           - EO
-          - AI
-      5:
-        lines:
-          # LLLL L A
-          - FI # Broken
-          - TO
-          - AI
-      6:
+          - FI
+          - FSEL
+      4:
         lines:
           # HHLL L A plus A
           - ALU2
@@ -4546,7 +4464,7 @@ instructions:
           - FI # Broken
           - EO
           - AI
-      7:
+      5:
         lines:
           - SCR
   SHR:
@@ -4554,21 +4472,28 @@ instructions:
     steps:
       3:
         lines:
-          - AO
-          - TI
-      4:
-        lines:
           # LLHH H logical 0
           - ALU0
           - ALU1
           - ALUM
           - EO
+          - FI
+          - FSEL
+      4:
+        lines:
+          # HHLL L A plus A + Carry
+          - ALU2
+          - ALU3
+          - FI # Broken
+          - EO
           - AI
       5:
         lines:
-          # LLLL L A
+          # HHLL L A plus A + Carry
+          - ALU2
+          - ALU3
           - FI # Broken
-          - TO
+          - EO
           - AI
       6:
         lines:
@@ -4620,45 +4545,20 @@ instructions:
           - AI
       12:
         lines:
-          # HHLL L A plus A + Carry
-          - ALU2
-          - ALU3
-          - FI # Broken
-          - EO
-          - AI
-      13:
-        lines:
-          # HHLL L A plus A + Carry
-          - ALU2
-          - ALU3
-          - FI # Broken
-          - EO
-          - AI
-      14:
-        lines:
           - SCR
   ROL:
     value: 0xEB
     steps:
       3:
         lines:
-          - AO
-          - TI
-      4:
-        lines:
           # LLHH H logical 0
           - ALU0
           - ALU1
           - ALUM
           - EO
-          - AI
-      5:
-        lines:
-          # LLLL L A
-          - FI # Broken
-          - TO
-          - AI
-      6:
+          - FI
+          - FSEL
+      4:
         lines:
           # HHLL L A plus A
           - ALU2
@@ -4666,13 +4566,13 @@ instructions:
           - FI # Broken
           - EO
           - AI
-      7:
+      5:
         lines:
           # LLLL L A plus carry
           - EO
           - AI
           - FI # Broken
-      8:
+      6:
         lines:
           - SCR
   # NOT IMPLEMENTED
@@ -4761,7 +4661,8 @@ instructions:
           - FI # Broken
           - EO
           - AI
-   
+  
+  # Carry does not matter
   BIT_#:
     value: 0xEF
     steps:
@@ -4776,7 +4677,7 @@ instructions:
       5:
         lines:
           - MDO
-          - BI
+          - TI
           - PCE
       6:
         lines:
@@ -4824,7 +4725,7 @@ instructions:
       10:
         lines:
           - MDO
-          - BI
+          - TI
       11:
         lines:
           - ALU0
@@ -4840,35 +4741,16 @@ instructions:
   STC:
     value: 0xF1
     steps:
-      3: # set carry
-        lines:
-          - AO
-          - PCBI
-      4:
+      3:
         lines:
           # HHLL H logical 1
           - ALU2
           - ALU3
           - ALUM
           - EO
-          - AI
-      5:
-        lines:
-          # LLHH H logical 0
-          - ALU0
-          - ALU1
-          - ALUM
-          - EO
-          - TI
-      6:
-        lines:
-          # LHHL L A minus B minus 1
-          - ALU1
-          - ALU2
-          - FI # Broken
-          - PCBO
-          - AI
-      7:
+          - FI
+          - FSEL
+      4:
         lines:
           - SCR
   # Carry HIGH
@@ -4877,22 +4759,13 @@ instructions:
     steps:
       3:
         lines:
-          - AO
-          - TI
-      4:
-        lines:
           # LLHH H logical 0
           - ALU0
           - ALU1
           - ALUM
           - EO
-          - AI
-      5:
-        lines:
-          # LLLL L A
-          - FI # Broken
-          - TO
-          - AI
-      6:
+          - FI
+          - FSEL
+      4:
         lines:
           - SCR

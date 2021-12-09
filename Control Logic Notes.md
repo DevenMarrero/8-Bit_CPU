@@ -73,7 +73,7 @@ Idea 2: XOR all bits.
 |1  | RIGHT | LOW    | 00000001 | PRI  |  |Read bus into upper byte of program counter (page register) |
 |2  | RIGHT | LOW    | 00000002 | PCI  |  |Read bus into lower byte of program counter |
 |3  | RIGHT | LOW    | 00000003 | AI   |  | Read bus into `A` register |
-|4  | RIGHT | LOW    | 00000004 | FI   | BROKEN - MOVE TO DIRECT | Read flags from bus or ALU into flags register, indicated by `FSEL` |
+|4  | RIGHT | LOW    | 00000004 |      | BROKEN - MOVE TO DIRECT |  |
 |5  | RIGHT | LOW    | 00000005 | TI   |  | Read bus into `Temp` register |
 |6  | RIGHT | LOW    | 00000006 | PRBI |  |Read bus into Page Register Buffer |
 |7  | RIGHT | LOW    | 00000007 | BI   |  | Read bus into `B` register |
@@ -88,7 +88,7 @@ Idea 2: XOR all bits.
 |16 | RIGHT | DIRECT | 00000080 | FSEL |  | Selects to read flags from bus or ALU |
 |17 | RIGHT | DIRECT | 00000100 | SPE  |  | Activate stack pointer increment or secrement indicated by `U/D` |
 |18 | RIGHT | DIRECT | 00000200 | U/D  |  | Indicates whether stack is increasing (LOW) or decreasing (HIGH) |
-|19 | RIGHT | DIRECT | 00000400 |  |   |  |  |
+|19 | RIGHT | DIRECT | 00000400 | FI   | L | Read flags from bus or ALU into flags register, indicated by `FSEL` |
 |20 | RIGHT | DIRECT | 00000800 |  |   |  |
 |21 | RIGHT | DIRECT | 00001000 |  |   |  |
 |22 | RIGHT | DIRECT | 00002000 |  |   |  |

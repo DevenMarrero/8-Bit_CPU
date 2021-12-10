@@ -119,7 +119,7 @@ Idea 2: XOR all bits.
 |47 | LEFT  | DIRECT | 40000000 | SCR |  | Resets the step counter |
 |48 | LEFT  | DIRECT | 80000000 | HLT | L | Stops to computer and sets it to manual mode | 
 
-##Programming:
+## Programming:
 12.75v on Vpp
 CE#/PGM# at Vil
 OE# at Vih

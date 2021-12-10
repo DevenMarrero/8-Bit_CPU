@@ -121,7 +121,9 @@ Idea 2: XOR all bits.
 
 ## Programming:
 12.75v on Vpp
+
 CE#/PGM# at Vil
+
 OE# at Vih
 
 `VPP MUST NOT BE ON IF VCC IS OFF`

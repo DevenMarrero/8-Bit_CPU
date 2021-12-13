@@ -1,11 +1,15 @@
-import serial
 import time
+import argparse
+import serial
 
-PORT = 'COM4'
-arduino = serial.Serial(port=PORT, baudrate=115200, timeout=0.1)
-
-# Allow connection to clear
-time.sleep(2)
+def connect_arduino(port, baudrate):
+	try:
+		arduino = serial.Serial(port=port, baudrate=baudrate, timeout=0.1)
+		time.sleep(2)
+		return arduino
+	except serial.serialutil.SerialException:
+		print(f"ERROR: Could not find Arduino on {port}")
+		exit()
 
 def write(byte):
 	arduino.write(byte)
@@ -25,10 +29,27 @@ def bytes_from_file(filename):
 			else:
 				break
 
-for byte in bytes_from_file("rom.bin"):
-	# TODO send to arduino
-	print(byte.to_bytes(1, byteorder="big"))
-		
+if __name__ == "__main__":
+	parser = argparse.ArgumentParser(description="Send a bin file to an Arduino.")
+	parser.add_argument("file", help="file to send to arduino")
+	parser.add_argument("port", help="port to connect to arduino")
+	parser.add_argument("-b", "--baudrate", type=int, default=115200,
+						help="serial baudrate of arduino")
 
+	args = parser.parse_args()
+	file = args.file
+	port = args.port
+	baudrate = args.baudrate
 
-	
+	print("Initializing Connection...")
+	arduino = connect_arduino(port, baudrate)
+	print("Connection successful")
+
+	for byte in bytes_from_file(file):
+		byte = byte.to_bytes(1, byteorder="big")
+		print(byte)
+
+		# send byte to arduino with verification
+		response = None
+		while not response == byte:
+			response = write(byte)

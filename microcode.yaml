@@ -3941,7 +3941,7 @@ instructions:
       6:
         lines:
           - EO
-          - BI
+          - CI
           - FI
       7:
         lines:
@@ -4642,9 +4642,77 @@ instructions:
           - FI 
           - EO
           - AI
-   
+
+  BIT_B:
+    value: 0xF0
+    steps:
+      3:
+        lines:
+          - BO
+          - TI
+      4:
+        lines:
+          - ALU0
+          - ALU1
+          - ALU3
+          - ALUM
+          - FI
+      5:
+        lines:
+          - SCR
+  BIT_C:
+    value: 0xF1
+    steps:
+      3:
+        lines:
+          - CO
+          - TI
+      4:
+        lines:
+          - ALU0
+          - ALU1
+          - ALU3
+          - ALUM
+          - FI
+      5:
+        lines:
+          - SCR
+  BIT_SPL:
+    value: 0xF2
+    steps:
+      3:
+        lines:
+          - SLO
+          - TI
+      4:
+        lines:
+          - ALU0
+          - ALU1
+          - ALU3
+          - ALUM
+          - FI
+      5:
+        lines:
+          - SCR
+  BIT_SPH:
+    value: 0xF3
+    steps:
+      3:
+        lines:
+          - SHO
+          - TI
+      4:
+        lines:
+          - ALU0
+          - ALU1
+          - ALU3
+          - ALUM
+          - FI
+      5:
+        lines:
+          - SCR
   BIT_#:
-    value: 0xEF
+    value: 0xF4
     steps:
       3:
         lines:
@@ -4657,7 +4725,7 @@ instructions:
       5:
         lines:
           - MDO
-          - BI
+          - TI
           - PCE
       6:
         lines:
@@ -4670,7 +4738,7 @@ instructions:
         lines:
           - SCR
   BIT_[#]:
-    value: 0xF0
+    value: 0xF5
     steps:
       3:
         lines:
@@ -4705,7 +4773,7 @@ instructions:
       10:
         lines:
           - MDO
-          - BI
+          - TI
       11:
         lines:
           - ALU0
@@ -4717,15 +4785,15 @@ instructions:
         lines:
           - SCR
 
-  # SET Carry (LOW) 
-  STC:
-    value: 0xF1
+  # Clear Carry (HIGH)
+  CLC:
+    value: 0xFC
     steps:
       3:
         lines:
-          # HHLL H logical 1 - bus not inverted
-          - ALU2
-          - ALU3
+          # LLHH H logical 0 - bus not inverted
+          - ALU0
+          - ALU1
           - ALUM
           - EO
           - FI
@@ -4733,15 +4801,15 @@ instructions:
       4:
         lines:
           - SCR
-  # Clear Carry (HIGH)
-  CLC:
-    value: 0xF2
+  # SET Carry (LOW) 
+  STC:
+    value: 0xFD
     steps:
       3:
         lines:
-          # LLHH H logical 0 - bus not inverted
-          - ALU0
-          - ALU1
+          # HHLL H logical 1 - bus not inverted
+          - ALU2
+          - ALU3
           - ALUM
           - EO
           - FI

@@ -13,9 +13,9 @@ def connect_arduino(port, baudrate):
 
 def write(byte):
 	arduino.write(byte)
-	data = None
-	while data == None:
-		time.sleep(0.05)
+	data = b''
+	while data == b'':
+		time.sleep(0.5)
 		data = arduino.readline()
 	return data
 
@@ -46,10 +46,11 @@ if __name__ == "__main__":
 	print("Connection successful")
 
 	for byte in bytes_from_file(file):
-		byte = byte.to_bytes(1, byteorder="big")
-		print(byte)
+		byte = str(byte).encode()
+		print("sent:", byte)
 
 		# send byte to arduino with verification
 		response = None
 		while not response == byte:
 			response = write(byte)
+			print("Received", response)

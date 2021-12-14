@@ -3,9 +3,8 @@ void setup() {
 }
 
 void loop() {
-  # wait until data recieved 
+  // wait until data recieved 
   while (!Serial.available());
-  x = Serial.readString().toInt();
-  Serial.println(x)
-  Serial.flush()
+  int x = Serial.parseInt();
+  Serial.print(x);
 }

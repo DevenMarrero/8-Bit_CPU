@@ -11,21 +11,22 @@ def connect_arduino(port, baudrate):
 		print(f"ERROR: Could not find Arduino on {port}")
 		exit()
 
-def write(byte):
+def write_read(byte):
 	arduino.write(byte)
 	data = b''
 	while data == b'':
-		time.sleep(0.5)
+		time.sleep(0.05)
 		data = arduino.readline()
 	return data
 
-def bytes_from_file(filename):
+def bytes_from_file(filename, chunksize):
 	with open(filename, "rb") as f:
 		while True:
-			chunk = f.read(1)
+			chunk = f.read(chunksize)
 			if chunk:
-				for byte in chunk:
-					yield byte
+				# for byte in chunk:
+				# 	yield byte
+				yield chunk
 			else:
 				break
 
@@ -42,15 +43,26 @@ if __name__ == "__main__":
 	baudrate = args.baudrate
 
 	print("Initializing Connection...")
-	arduino = connect_arduino(port, baudrate)
+	# arduino = connect_arduino(port, baudrate)
 	print("Connection successful")
 
-	for byte in bytes_from_file(file):
-		byte = str(byte).encode()
-		print("sent:", byte)
+	for chunk in bytes_from_file(file, 63):
+		for byte in chunk:
+			byte = str(byte).encode()
+			print("sent:", byte)
 
-		# send byte to arduino with verification
-		response = None
-		while not response == byte:
-			response = write(byte)
-			print("Received", response)
+			# send byte to arduino with verification
+
+			# response = None
+			# while not response == byte:
+			# 	response = write_read(byte)
+			# 	print("Received", response)
+			arduino.write(byte)
+		
+		time.sleep(0.5)
+		confirmation = "?".encode
+		response = write_read(confirmation)
+
+		if not response == confirmation:
+			print("ERROR response not equal. Response: " + response)
+

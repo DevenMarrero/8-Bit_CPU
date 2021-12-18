@@ -2,6 +2,7 @@ import time
 import argparse
 import serial
 
+
 def connect_arduino(port, baudrate):
 	try:
 		arduino = serial.Serial(port=port, baudrate=baudrate, timeout=0.1)
@@ -11,26 +12,27 @@ def connect_arduino(port, baudrate):
 		print(f"ERROR: Could not find Arduino on {port}")
 		exit()
 
+
 def write_read(byte):
-	arduino.write(byte)
+	arduino.write(bytes(byte, 'utf-8'))
 	data = b''
 	while data == b'':
-		time.sleep(0.05)
 		data = arduino.readline()
 	return data
 
-def bytes_from_file(filename, chunksize):
+
+def bytes_from_file(filename):
 	with open(filename, "rb") as f:
 		while True:
-			chunk = f.read(chunksize)
+			chunk = f.read(1)
 			if chunk:
-				# for byte in chunk:
-				# 	yield byte
-				yield chunk
+				for byte in chunk:
+					yield byte
 			else:
 				break
 
 if __name__ == "__main__":
+    # command line argument parser
 	parser = argparse.ArgumentParser(description="Send a bin file to an Arduino.")
 	parser.add_argument("file", help="file to send to arduino")
 	parser.add_argument("port", help="port to connect to arduino")
@@ -42,27 +44,18 @@ if __name__ == "__main__":
 	port = args.port
 	baudrate = args.baudrate
 
+
 	print("Initializing Connection...")
-	# arduino = connect_arduino(port, baudrate)
+	arduino = connect_arduino(port, baudrate)
 	print("Connection successful")
 
-	for chunk in bytes_from_file(file, 63):
-		for byte in chunk:
-			byte = str(byte).encode()
-			print("sent:", byte)
+	print("Programming EEPROM")
+	write_read('<')
 
-			# send byte to arduino with verification
-
-			# response = None
-			# while not response == byte:
-			# 	response = write_read(byte)
-			# 	print("Received", response)
-			arduino.write(byte)
-		
-		time.sleep(0.5)
-		confirmation = "?".encode
-		response = write_read(confirmation)
-
-		if not response == confirmation:
-			print("ERROR response not equal. Response: " + response)
-
+	for byte in bytes_from_file(file):
+		print("sent:", byte)
+		response = write_read(str(byte) + ';')
+		print("Recieved:", response.decode().replace("\n", ""))
+	
+	write_read('>')
+	print("Finished Programming")

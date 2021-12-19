@@ -9,8 +9,8 @@
 // Digital active low
 # define MLI 10
 # define MHI 11
-# define MDI 12
-# define CLK 13
+# define CLK 12
+# define MDI 13
 
 int address = 0;
 int data;
@@ -61,16 +61,17 @@ void resetLines(){
   pinMode(MDI, INPUT);
   pinMode(CLK, INPUT);
 
-  // enable control eproms
-  analogWrite(control_CE, 0);
+  analogWrite(control_CE, 0); // enable control eproms
 }
 
 void setLines(){
+  analogWrite(control_CE, 255); // dsiable control eproms
+  
   // set data pins to output
   for (int pin = DATA_0; pin <= DATA_7; pin++){
     pinMode(pin, OUTPUT);
   }
-
+  
   digitalWrite(MLI, HIGH);
   digitalWrite(MHI, HIGH);
   digitalWrite(MDI, HIGH);
@@ -80,8 +81,6 @@ void setLines(){
   pinMode(MHI, OUTPUT);
   pinMode(MDI, OUTPUT);
   pinMode(CLK, OUTPUT);
-
-  analogWrite(control_CE, 255);
 }
 
 
@@ -117,4 +116,3 @@ void loop() {
     Serial.println(data); // ready for next byte
   }
 }
-

@@ -871,6 +871,71 @@ instructions:
   #
   # LOAD
   #
+  LOD_A_[#]_B:
+    value: 0x40
+    steps:
+      3:
+        lines: # transfer
+            - PCO
+            - MLI
+      4:
+        lines:
+            - PRO
+            - MHI
+      5:
+        lines: # low addr to a
+          - MDO
+          - AI
+          - PCE
+      6:
+        lines: # clear carry
+          # LLHH H logical 0 - bus not inverted
+          - ALU0
+          - ALU1
+          - ALUM
+          - EO
+          - FI
+          - FSEL
+      7:
+        lines:
+          - BO
+          - TI
+      8:
+        lines: # add B to low address, save to buffer
+          - ALU0
+          - ALU3
+          - EO
+          - PCBI
+          - FI 
+      9:
+        lines: # transfer
+          - PCO
+          - MLI
+      10:
+        lines: 
+          - PRO
+          - MHI
+      11:
+        lines: # high addr to A
+          - MDO
+          - AI
+          - PCE
+      12:
+        lines: # add carry to A
+          - EO
+          - MHI
+          - FI 
+      13:
+        lines:
+          - PCBO
+          - MLI
+      14:
+        lines:
+          - MDO
+          - AI
+      15:
+        lines:
+          - SCR
   LOD_A_[BC]:
     value: 0x41
     steps:

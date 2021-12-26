@@ -414,7 +414,8 @@ instructions:
         lines:
           - SCR
   #
-  # JUMPS - Do not put 2 PCE when the jmp executes
+  # JUMPS - Do not put 2 PCE when the jmp executes,
+  #    if jump to 0x00 do not want to increment to 0x01
   #
   JMP:
     value: 0x2F
@@ -2035,6 +2036,7 @@ instructions:
       5:
         lines:
           - MDO
+          - PCE
           - TI
           - SPE
           - U/D # Stack down
@@ -2214,7 +2216,7 @@ instructions:
           lines:
             - SCR
   CALC:
-    value: 0xA0
+    value: 0xA1
     flag_inst: True
     steps:
       3:
@@ -2309,7 +2311,7 @@ instructions:
           lines:
               - SCR
   CALN:
-    value: 0xA0
+    value: 0xA2
     flag_inst: True
     steps:
       3:
@@ -2405,7 +2407,7 @@ instructions:
           lines:
             - SCR
   CALNZ:
-    value: 0xA0
+    value: 0xA3
     flag_inst: True
     steps:
       3:
@@ -2501,7 +2503,7 @@ instructions:
           lines:
             - SCR
   CALNC:
-    value: 0xA0
+    value: 0xA4
     flag_inst: True
     steps:
       3:
@@ -2597,7 +2599,7 @@ instructions:
           lines:
             - SCR
   CALP:
-    value: 0xA0
+    value: 0xA5
     flag_inst: True
     steps:
       3:
@@ -4575,6 +4577,9 @@ instructions:
           - FI 
           - EO
           - AI
+      4:
+        lines:
+          - SCR
   RCR:
     value: 0xEE
     steps:
@@ -4642,6 +4647,9 @@ instructions:
           - FI 
           - EO
           - AI
+      11:
+        lines:
+          - SCR
 
   BIT_B:
     value: 0xF0

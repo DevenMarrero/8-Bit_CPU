@@ -21,8 +21,8 @@ with open("microcode.yaml", 'rb') as file:
     microcode = yaml.safe_load(file)
 
 
-print("Generating Microcode ROM")
-with open("test" + microcode["output_file_name"], "wb") as out_file:
+print("Generating Microcode ROM...")
+with open(microcode["output_file_name"], "wb") as out_file:
     # 262144
     for address in range(262144):
         #   SEL Flag   Inst   Step      
@@ -94,15 +94,11 @@ with open("test" + microcode["output_file_name"], "wb") as out_file:
             
         byte = or_list(bytes)
 
-
-        #print("Micro:", micro, "Bits:", byte)
-
-
         if not byte_sel:
             out_file.write((byte & 0xFFFF).to_bytes(2, byteorder='big'))
         else:
             out_file.write((byte >> 16).to_bytes(2, byteorder='big'))
 
-        if address % 256 == 0:
-            print(".", end="")
-print(" done")
+        #if address % 512 == 0:
+        #    print(".", end="")
+print("Done: " + microcode["output_file_name"])

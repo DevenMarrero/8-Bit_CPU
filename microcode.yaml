@@ -4298,7 +4298,7 @@ instructions:
         lines:
           - SCR
   CMP_#:
-    value: 0xE4
+    value: 0xE6
     steps:
       3:
         lines:
@@ -4332,7 +4332,7 @@ instructions:
         lines:
           - SCR
   CMP_[#]:
-    value: 0xE4
+    value: 0xE7
     steps:
       4:
         lines:

@@ -5,6 +5,7 @@
 
 // Analog active high
 # define control_CE A0 //low defualt 
+# define timerCLK A1
 
 // Digital active low
 # define MLI 10
@@ -47,7 +48,7 @@ void writeEEPROM(int address, int data){
       digitalWrite(pin, address & 1);
       address = address >> 1;
     }  
-    delay(100);
+    delay(1);
     digitalWrite(MHI, LOW);
     delayMicroseconds(10);
     digitalWrite(CLK, LOW);
@@ -117,7 +118,14 @@ void setup() {
 
 void loop() {
   // wait for serial input
-  while(!Serial.available()){}
+  while(!Serial.available()){
+    analogWrite(timerCLK, 0);
+
+    delayMicroseconds(2500);
+
+    analogWrite(timerCLK, 255);
+    delayMicroseconds(2500);
+  }
 
   if (Serial.peek() == '<'){
     programming = true;
@@ -139,7 +147,7 @@ void loop() {
     Serial.read(); // clear input buffer
     address++;
     //Debug.print(DBG_INFO, "High = %d, Low = %d, data = %d", address >> 8, address & 0b11111111, data);
-    delay(100);
+    delay(10);
     Serial.println(data); // ready for next byte
     
   }

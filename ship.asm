@@ -1,4 +1,5 @@
 ; https://vscode.dev/
+; customasm extension
 #include "8bit_cpu_def.asm"
 
 ; hardware constants

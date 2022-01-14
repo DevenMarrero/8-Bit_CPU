@@ -1,3 +1,4 @@
+; https://vscode.dev/
 #include "8bit_cpu_def.asm"
 
 ; hardware constants

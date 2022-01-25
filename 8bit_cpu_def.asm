@@ -34,6 +34,7 @@
 
     ; register copy from source
     mov {r: register}, {src: source} => 0b00 @ r @ src
+    move {r: register}, {src: source} => 0b00 @ r @ src
 
     ; [#], [bc], [de]
     load a, [{immediate: u16}], b => 0x40 @ le(immediate)

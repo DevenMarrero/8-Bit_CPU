@@ -1,3 +1,6 @@
+; download customasm-vscode extension
+
+; subruledef for 8 source
 #subruledef register{
     a => 0b000
     b => 0b001
@@ -11,6 +14,8 @@
     #{immediate: u8} => 0b111 @ immediate
 }
 
+
+; 16 bit registers for 16 source2
 #subruledef register2{
     [bc] => 0b001
     [de] => 0b011
@@ -21,6 +26,8 @@
     [{immediate: u16}] => 0b111 @ le(immediate)
 }
 
+
+; alu follows different opcode structure
 #subruledef aluReg{
     b => 0b00
     c => 0b01
@@ -29,30 +36,36 @@
 }
 
 #ruledef{
+    ; no arguments
     nop => 0x00
     hlt => 0xFF
 
-    ; register copy from source
+    ; copy from source to register
     mov {r: register}, {src: source} => 0b00 @ r @ src
     move {r: register}, {src: source} => 0b00 @ r @ src
 
-    ; [#], [bc], [de]
+    ; load a from 16 bit immediate + b reg offset (simplifies looping)
     load a, [{immediate: u16}], b => 0x40 @ le(immediate)
+    ; load register from memory at 16 bit source
     load {r: register}, {src: source2} => 0b01 @ r @ src
 
+    ; store register value at 16 bit register location
     store {r2: register2}, {r: register} => 0b10 @ r2 @ r
+    ; store register at immediate in memory
     store [{immediate: u16}], {r: register} => 0b10 @ 0b111 @ r @ le(immediate)
+
+    ; other instructions
 
     ; -----------------------------------------
     ;   jumps
     jmp   {address: u16} => 0x2F @ le(address)
-    jz    {address: u16} => 0x30 @ le(address)
-    jc    {address: u16} => 0x31 @ le(address)
-    jn    {address: u16} => 0x32 @ le(address)
-    jnz   {address: u16} => 0x33 @ le(address)
-    jnc   {address: u16} => 0x34 @ le(address)
-    jp    {address: u16} => 0x35 @ le(address)
-    jmp_r {address: u8} => 0x37 @ address
+    jz    {address: u16} => 0x30 @ le(address) ; jump if zero
+    jc    {address: u16} => 0x31 @ le(address) ; jump if carry
+    jn    {address: u16} => 0x32 @ le(address) ; jump if negative
+    jnz   {address: u16} => 0x33 @ le(address) ; jump if not zero
+    jnc   {address: u16} => 0x34 @ le(address) ; jump if not cary
+    jp    {address: u16} => 0x35 @ le(address) ; jump if positive
+    jmp_r {address: u8} => 0x37 @ address ; faster jump stays on same page
 
     ; ------------------------------------------
     ;   calls
@@ -123,6 +136,7 @@
     bit #{immediate: u8} => 0xF4 @ immediate
     bit [{address: u16}] => 0xF5 @ le(address)
 
+    ; clear and set carry flag
     clr_c => 0xFC
     set_c => 0xFD
 }

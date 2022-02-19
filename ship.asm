@@ -137,6 +137,9 @@ draw_lcd:
     call lcd_instruction
     .printloop:
         load a, [screen], b ; get the next char
+        ; error is occuring here, FF going to program counter
+        nop ; might fix by aligning bytes
+        
         bit #0xFF ; check for end of string
         jz .ret
         call print_char ; print the char

@@ -21,6 +21,7 @@ def write_read(byte):
 	data = b''
 	while data == b'':
 		data = arduino.readline()
+	time.sleep(0.001)
 	return data
 
 

@@ -2778,7 +2778,7 @@ instructions:
         lines:
           - MDO
           - PCI
-          - SPE # DOWN
+          - SPE # up
       6:
         lines:
           - SLO

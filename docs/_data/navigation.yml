@@ -1,11 +1,7 @@
 # main links
 docs:
   - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  - title: "About"
-    url: https://mmistakes.github.io/minimal-mistakes/about/
-  - title: "Doc Test"
-    url: /docs/test/
+    url: /
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"

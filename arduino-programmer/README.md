@@ -5,7 +5,7 @@ The sketch is uploaded to an Arduino nano which sits on standby until it recieve
 ## Usage
 `pip install pyserial` for serial communication.
 
-`python sendFile.py [-h] [-b BAUDRATE] file port`
+`python sendFile.py file port [-b BAUDRATE] [-h]`
 
 positional arguments:
   - file       binary file to send to arduino

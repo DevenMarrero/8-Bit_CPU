@@ -2,3 +2,20 @@
 *.bak
 *.sch-bak
 schematics/KiCad/8-bit-cpu-schematics-cache.lib
+
+# Ruby Gem
+Gemfile
+*.gem
+.bundle
+Gemfile.lock
+**/vendor/bundle
+
+# Jekyll generated files
+.jekyll-cache
+.jekyll-metadata
+.sass-cache
+_asset_bundler_cache
+_site
+
+# macOS
+.DS_Store

@@ -1,6 +1,6 @@
 ---
 title: "Clock"
-permalink: /docs/clock
+permalink: /docs/clock/
 excerpt: "Building the CPU clock"
 ---
 

@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 2
+Sheet 2 10
 Title "CLOCK"
 Date "2021-10-23"
 Rev "1.0"
@@ -119,15 +119,7 @@ $EndComp
 Wire Wire Line
 	2250 2900 3300 2900
 Wire Wire Line
-	2300 2150 1800 2150
-Wire Wire Line
-	1800 2150 1800 2900
-Wire Wire Line
 	2250 2900 1900 2900
-Wire Wire Line
-	1900 2900 1900 2350
-Wire Wire Line
-	1900 2350 2300 2350
 Connection ~ 2250 2900
 Wire Wire Line
 	2800 2750 2800 3300
@@ -248,7 +240,7 @@ F 3 "" H 4800 2200 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4800 2150 4800 2200
-Text Notes 8000 1150 0    79   ~ 0
+Text Notes 8000 850  0    79   ~ 0
 Toggle Button\nQHIGH = AUTO\nQLOW = MANUAL
 $Comp
 L Timer:TLC555xP U?
@@ -334,23 +326,8 @@ F 3 "" H 8400 1400 50  0001 C CNN
 	1    8400 1400
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:R R?
-U 1 1 617A5E4E
-P 7800 1700
-F 0 "R?" H 7870 1746 50  0000 L CNN
-F 1 "1k" H 7870 1655 50  0000 L CNN
-F 2 "" V 7730 1700 50  0001 C CNN
-F 3 "~" H 7800 1700 50  0001 C CNN
-	1    7800 1700
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	7900 2550 7800 2550
-Wire Wire Line
-	7800 1550 7800 1450
-Wire Wire Line
-	7800 1450 8400 1450
 Wire Wire Line
 	8400 1400 8400 1450
 $Comp
@@ -704,17 +681,6 @@ F 3 "http://www.ti.com/lit/gpn/sn74LS08" H 7750 4550 50  0001 C CNN
 	1    7750 4550
 	1    0    0    -1  
 $EndComp
-$Comp
-L Device:Q_NPN_BCE Q?
-U 1 1 61A7D80A
-P 9300 1750
-F 0 "Q?" V 9535 1750 50  0000 C CNN
-F 1 "Q_NPN_BCE" V 9626 1750 50  0000 C CNN
-F 2 "" H 9500 1850 50  0001 C CNN
-F 3 "~" H 9300 1750 50  0001 C CNN
-	1    9300 1750
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	8550 1450 8400 1450
 Connection ~ 8400 1450
@@ -733,49 +699,15 @@ Wire Wire Line
 	9150 1450 9000 1450
 Connection ~ 9000 1450
 Wire Wire Line
-	8400 1450 8400 1950
-Wire Wire Line
-	7800 1850 7800 2550
-$Comp
-L 74xx:74LS08 U?
-U 1 1 61ADC0D1
-P 10150 1550
-F 0 "U?" H 10150 1233 50  0000 C CNN
-F 1 "74LS08" H 10150 1324 50  0000 C CNN
-F 2 "" H 10150 1550 50  0001 C CNN
-F 3 "http://www.ti.com/lit/gpn/sn74LS08" H 10150 1550 50  0001 C CNN
-	1    10150 1550
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	9300 1550 9300 1600
-Wire Wire Line
-	9300 1550 9850 1550
+	8400 1450 8400 1700
 Wire Wire Line
 	8900 2150 10450 2150
-Wire Wire Line
-	10450 2150 10450 1650
-Connection ~ 9300 1550
-Wire Wire Line
-	9600 1450 9600 1850
-Wire Wire Line
-	9500 1850 9600 1850
-Connection ~ 9600 1850
-Wire Wire Line
-	9600 1850 9600 2550
-Wire Wire Line
-	9100 1850 9050 1850
-Wire Wire Line
-	9050 1850 9050 2550
-Text GLabel 10750 1450 2    79   Input ~ 0
+Text GLabel 10150 1050 2    79   Input ~ 0
 HLT
-Wire Wire Line
-	10750 1450 10450 1450
 Wire Wire Line
 	10450 2150 10450 3450
 Wire Wire Line
 	6650 3450 6650 4000
-Connection ~ 10450 2150
 Wire Wire Line
 	7450 4000 6650 4000
 Connection ~ 6650 4000
@@ -954,4 +886,53 @@ Connection ~ 5050 4950
 Wire Wire Line
 	4950 4900 4950 5200
 Connection ~ 4950 4900
+Wire Wire Line
+	1800 2350 2300 2350
+Wire Wire Line
+	1800 2350 1800 2900
+Wire Wire Line
+	1900 2900 1900 2150
+Wire Wire Line
+	1900 2150 2300 2150
+$Comp
+L Device:R R?
+U 1 1 62135537
+P 8700 1750
+F 0 "R?" V 8493 1750 50  0000 C CNN
+F 1 "1k" V 8584 1750 50  0000 C CNN
+F 2 "" V 8630 1750 50  0001 C CNN
+F 3 "~" H 8700 1750 50  0001 C CNN
+	1    8700 1750
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8400 1700 8550 1700
+Wire Wire Line
+	8550 1700 8550 1750
+Connection ~ 8400 1700
+Wire Wire Line
+	8400 1700 8400 1950
+Wire Wire Line
+	8850 1750 9050 1750
+Wire Wire Line
+	9050 1750 9050 2550
+Wire Wire Line
+	9600 1450 9600 2550
+Wire Wire Line
+	7800 1050 7800 2550
+$Comp
+L 74xx:74HC04 U?
+U 1 1 621777B9
+P 9700 1050
+F 0 "U?" H 9700 733 50  0000 C CNN
+F 1 "74HC04" H 9700 824 50  0000 C CNN
+F 2 "" H 9700 1050 50  0001 C CNN
+F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 9700 1050 50  0001 C CNN
+	1    9700 1050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10150 1050 10000 1050
+Wire Wire Line
+	7800 1050 9400 1050
 $EndSCHEMATC

@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 1
+Sheet 6 10
 Title "Output_HEX"
 Date "2021-11-08"
 Rev "1.0"
@@ -24,7 +24,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/tlc555.pdf" H 3350 1450 50  0001 C CNN
 	1    2500 1850
 	1    0    0    -1  
 $EndComp
-NoConn ~ 2000 2050
 $Comp
 L Device:C C?
 U 1 1 618B1BD7
@@ -590,4 +589,15 @@ F 3 "" H 4900 4050 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	4900 4050 4900 4100
+$Comp
+L power:+5V #PWR?
+U 1 1 6215876D
+P 2000 2050
+F 0 "#PWR?" H 2000 1900 50  0001 C CNN
+F 1 "+5V" H 2015 2223 50  0000 C CNN
+F 2 "" H 2000 2050 50  0001 C CNN
+F 3 "" H 2000 2050 50  0001 C CNN
+	1    2000 2050
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC

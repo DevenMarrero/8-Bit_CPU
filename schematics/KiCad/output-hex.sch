@@ -423,7 +423,7 @@ CLK
 Text GLabel 1850 3350 0    59   Input ~ 0
 MDI
 Text GLabel 1850 3150 0    59   Input ~ 0
-MEM_MAP
+MEM_MAP_0
 $Comp
 L 74xx:74LS08 U?
 U 1 1 6195E7C5

@@ -4,6 +4,8 @@ permalink: /
 excerpt: "NQSAP: the Not Quite Simple As Possible breadboard computer"
 ---
 
+HOME
+
 The Not Quite Simple As Possible Computer
 
 The NQSAP is a breadboard TTL computer that follows the

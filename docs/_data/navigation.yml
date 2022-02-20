@@ -1,7 +1,9 @@
 # main links
 docs:
-  - title: "Quick-Start Guide"
-    url: /
+  - title: "Overview"
+    children:
+      - title: "Home"
+        url: /
   # - title: "Sample Posts"
   #   url: /year-archive/
   # - title: "Sample Collections"

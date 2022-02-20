@@ -1,4 +1,5 @@
 import yaml
+import argparse
 
 def get_opcode(address, microcode, default=None):
     """Returns name of opcode when given binary address"""
@@ -16,10 +17,17 @@ def or_list(nums):
     return number
 
 
-# Load the microcode yaml
-with open("microcode.yaml", 'rb') as file:
-    microcode = yaml.safe_load(file)
+parser = argparse.ArgumentParser(description="Convert YAML file of opcodes into binary")
+parser.add_argument("file", help="YAML file containing microcode")
+parser.add_argument("-l", "--little", action='store_true',
+                    help="output binary in little endian format")
+args = parser.parse_args()
+file = args.file
+little_endian = args.little
 
+# Load the microcode yaml
+with open(file, 'rb') as f:
+    microcode = yaml.safe_load(f)
 
 print("Generating Microcode ROM...")
 with open(microcode["output_file_name"], "wb") as out_file:
@@ -93,11 +101,10 @@ with open(microcode["output_file_name"], "wb") as out_file:
             
         byte = or_list(bytes)
 
+        order = "little" if little_endian else "big"
         if not byte_sel:
-            out_file.write((byte & 0xFFFF).to_bytes(2, byteorder='big'))
+            out_file.write((byte & 0xFFFF).to_bytes(2, byteorder=order))
         else:
-            out_file.write((byte >> 16).to_bytes(2, byteorder='big'))
+            out_file.write((byte >> 16).to_bytes(2, byteorder=order))
 
-        #if address % 512 == 0:
-        #    print(".", end="")
 print("Done: " + microcode["output_file_name"])

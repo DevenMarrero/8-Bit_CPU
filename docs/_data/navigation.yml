@@ -4,3 +4,8 @@ docs:
     children:
       - title: "Home"
         url: /
+
+  - title: "Build"
+    children:
+      - title: "clock"
+        url: /docs/clock/

@@ -74,3 +74,17 @@ Adding conditional instructions are not much harder and follow the format like t
 ```
 
 We can see there is an additional key-value of flag_inst: True at the top. Each step is also now split into separate lists for each permutation of applicable flags. If the inverse of a flag is not listed (such as zero: 0 only being listed in step 3) it is just assumed to be blank.
+
+For this instruction if the zero flag is not set the step counter is reset and the instruction is not run, but if the zero flag is set it performs the intended return if zero.
+
+## Usage
+`python microcode.py file [-l]`
+
+positional arguments:
+  - file       YAML file to encode
+
+optional arguments:
+  - -h, --help
+  - -l, --little      output binary in little endian format
+
+Outputting in little endian was necessary for me because my EPROM programmer would automatically swap the bytes.

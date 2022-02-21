@@ -87,10 +87,10 @@ Connection ~ 1600 1200
 Wire Wire Line
 	1600 1200 1600 1900
 $Comp
-L 4xxx:4002 U?
+L 4xxx:4002 U30
 U 1 1 61758502
 P 3650 1650
-F 0 "U?" H 3650 2025 50  0000 C CNN
+F 0 "U30" H 3650 2025 50  0000 C CNN
 F 1 "4002" H 3650 1934 50  0000 C CNN
 F 2 "" H 3650 1650 50  0001 C CNN
 F 3 "http://www.intersil.com/content/dam/Intersil/documents/cd40/cd4000bms-01bms-02bms-25bms.pdf" H 3650 1650 50  0001 C CNN
@@ -125,10 +125,10 @@ Wire Wire Line
 	3350 1800 2000 1800
 Connection ~ 2000 1800
 $Comp
-L 74xx:74HC04 U?
+L 74xx:74HC04 U33
 U 1 1 617669E4
 P 4350 2300
-F 0 "U?" H 4350 2617 50  0000 C CNN
+F 0 "U33" H 4350 2617 50  0000 C CNN
 F 1 "74HC04" H 4350 2526 50  0000 C CNN
 F 2 "" H 4350 2300 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 4350 2300 50  0001 C CNN
@@ -152,10 +152,10 @@ Wire Wire Line
 Wire Wire Line
 	5400 2400 6050 2400
 $Comp
-L 74xx:74LS08 U?
+L 74xx:74LS08 U36
 U 1 1 617718E7
 P 5100 2400
-F 0 "U?" H 5100 2725 50  0000 C CNN
+F 0 "U36" H 5100 2725 50  0000 C CNN
 F 1 "74LS08" H 5100 2634 50  0000 C CNN
 F 2 "" H 5100 2400 50  0001 C CNN
 F 3 "http://www.ti.com/lit/gpn/sn74LS08" H 5100 2400 50  0001 C CNN
@@ -163,10 +163,10 @@ F 3 "http://www.ti.com/lit/gpn/sn74LS08" H 5100 2400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74xx:74LS08 U?
+L 74xx:74LS08 U34
 U 1 1 61771F44
 P 4600 1750
-F 0 "U?" H 4600 2075 50  0000 C CNN
+F 0 "U34" H 4600 2075 50  0000 C CNN
 F 1 "74LS08" H 4600 1984 50  0000 C CNN
 F 2 "" H 4600 1750 50  0001 C CNN
 F 3 "http://www.ti.com/lit/gpn/sn74LS08" H 4600 1750 50  0001 C CNN
@@ -180,10 +180,10 @@ IO
 Text GLabel 6050 2400 2    79   Input ~ 0
 ~RAM
 $Comp
-L 8-Bit_Components:74HC238 U?
+L 8-Bit_Components:74HC238 U37
 U 1 1 61776C5C
 P 6200 3250
-F 0 "U?" H 6200 3766 50  0000 C CNN
+F 0 "U37" H 6200 3766 50  0000 C CNN
 F 1 "74HC238" H 6200 3675 50  0000 C CNN
 F 2 "" H 6200 3250 50  0001 C CNN
 F 3 "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fcd74hc138" H 6200 3250 50  0001 C CNN
@@ -191,10 +191,10 @@ F 3 "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https
 	1    0    0    -1  
 $EndComp
 $Comp
-L 8-Bit_Components:74HC238 U?
+L 8-Bit_Components:74HC238 U35
 U 1 1 617794A4
 P 4850 4550
-F 0 "U?" H 4850 5066 50  0000 C CNN
+F 0 "U35" H 4850 5066 50  0000 C CNN
 F 1 "74HC238" H 4850 4975 50  0000 C CNN
 F 2 "" H 4850 4550 50  0001 C CNN
 F 3 "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https%3A%2F%2Fwww.ti.com%2Flit%2Fgpn%2Fcd74hc138" H 4850 4550 50  0001 C CNN
@@ -202,10 +202,10 @@ F 3 "https://www.ti.com/general/docs/suppproductinfo.tsp?distId=10&gotoUrl=https
 	1    0    0    -1  
 $EndComp
 $Comp
-L 74xx:74HC04 U?
+L 74xx:74HC04 U31
 U 1 1 6177AB08
 P 3700 3050
-F 0 "U?" H 3700 3367 50  0000 C CNN
+F 0 "U31" H 3700 3367 50  0000 C CNN
 F 1 "74HC04" H 3700 3276 50  0000 C CNN
 F 2 "" H 3700 3050 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/74HC_HCT04.pdf" H 3700 3050 50  0001 C CNN
@@ -254,10 +254,10 @@ M_MAP_14
 Text HLabel 5850 5650 2    59   Input ~ 0
 M_MAP_15
 $Comp
-L 74xx:74LS08 U?
+L 74xx:74LS08 U32
 U 1 1 61792F25
 P 3700 5650
-F 0 "U?" H 3700 5975 50  0000 C CNN
+F 0 "U32" H 3700 5975 50  0000 C CNN
 F 1 "74LS08" H 3700 5884 50  0000 C CNN
 F 2 "" H 3700 5650 50  0001 C CNN
 F 3 "http://www.ti.com/lit/gpn/sn74LS08" H 3700 5650 50  0001 C CNN

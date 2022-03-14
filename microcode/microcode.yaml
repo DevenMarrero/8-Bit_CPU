@@ -2012,19 +2012,21 @@ instructions:
     steps:
       3:
         lines:
-          - SHO
-          - MHI
           - SPE
           - U/D # Stack down
       4:
         lines:
+          - SHO
+          - MHI
+      5:
+        lines:
           - SLO
           - MLI
-      5:
+      6:
         lines:
           - AO
           - MDI
-      6:
+      7:
         lines:
           - SCR
   PUSH_B:
@@ -2032,19 +2034,21 @@ instructions:
     steps:
       3:
         lines:
-          - SHO
-          - MHI
           - SPE
           - U/D # Stack down
       4:
         lines:
+          - SHO
+          - MHI
+      5:
+        lines:
           - SLO
           - MLI
-      5:
+      6:
         lines:
           - BO
           - MDI
-      6:
+      7:
         lines:
           - SCR
   PUSH_C:
@@ -2052,19 +2056,21 @@ instructions:
     steps:
       3:
         lines:
-          - SHO
-          - MHI
           - SPE
           - U/D # Stack down
       4:
         lines:
+          - SHO
+          - MHI
+      5:
+        lines:
           - SLO
           - MLI
-      5:
+      6:
         lines:
           - CO
           - MDI
-      6:
+      7:
         lines:
           - SCR
   PUSH_PSW:
@@ -2072,19 +2078,21 @@ instructions:
     steps:
       3:
         lines:
-          - SHO
-          - MHI
           - SPE
           - U/D # Stack down
       4:
         lines:
+          - SHO
+          - MHI
+      5:
+        lines:
           - SLO
           - MLI
-      5:
+      6:
         lines:
           - FO
           - MDI
-      6:
+      7:
         lines:
           - SCR
   PUSH_#:

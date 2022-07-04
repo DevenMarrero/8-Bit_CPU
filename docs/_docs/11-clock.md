@@ -1,7 +1,5 @@
 ---
 title: "Clock"
 permalink: /docs/clock/
-excerpt: "Building the CPU clock"
+excerpt: ""
 ---
-
-How I built the clock

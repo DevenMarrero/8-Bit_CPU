@@ -2,10 +2,34 @@
 docs:
   - title: "Overview"
     children:
-      - title: "Home"
+      - title: "About this Project"
         url: /
 
   - title: "Build"
     children:
-      - title: "clock"
+      - title: "Getting Started"
+        url: /docs/getting_started/
+
+      - title: "Clock"
         url: /docs/clock/
+
+      - title: "ALU"
+        url: /docs/alu/
+
+      - title: "Input"
+        url: /docs/input/
+
+      - title: "LCD Display"
+        url: /docs/lcd_display/
+
+      - title: "Program Counter"
+        url: /docs/program_counter/
+
+      - title: "RAM"
+        url: /docs/ram/
+
+      - title: "Registers"
+        url: /docs/registers/
+
+      - title: "Stack Pointer"
+        url: /docs/stack_pointer/

@@ -22,12 +22,7 @@ bool write_high;
 void writeEEPROM(int address, int data){
   // high address only needs to be written every 255 bytes
   // only write high if low address is 0 and has carried over
-  if ((address & 0b11111111) == 0){
-    write_high = true;
-  }
-  else {
-    write_high = false;
-  }
+  write_high = ((address & 0b11111111) == 0);
   
   // low address
   // address on bus

@@ -264,7 +264,7 @@ instructions:
           - SCR
 
   MOV_SPL_A:
-    value: 18
+    value: 0x18
     steps:
       3:
         lines:
@@ -339,7 +339,7 @@ instructions:
           - SCR
 
   MOV_SPH_A:
-    value: 20
+    value: 0x20
     steps:
       3:
         lines:

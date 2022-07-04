@@ -16,11 +16,11 @@ minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "n
 
 # Site Settings
 locale: "en-US"
-title: "8Bit CPU"
+title: "8-Bit Breadboard CPU"
 title_separator: "-"
-subtitle: "How I Designed and Built my own Computer"
+subtitle: "Designing and Building my own Computer "
 name: "Deven Marrero"
-description: "DOCUMENTAION WORK IN PROGRESS"
+description: "DOCUMENTAION, WIP"
 url: https://devenmarrero.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 #baseurl                 : # the subpath of your site, e.g. "/blog"
 repository: devenmarrero/8-Bit_CPU

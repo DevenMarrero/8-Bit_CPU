@@ -3,6 +3,8 @@
 *.sch-bak
 schematics/KiCad/8-bit-cpu-schematics-cache.lib
 
+# Project
+*.bin
 *.xml
 
 # Ruby Gem

@@ -1,7 +1,7 @@
 ---
-title: "Beta-8"
+title: "BETA-8 Breadboard Computer"
 permalink: /
 excerpt: ""
 ---
 
-Advanced 8-Bit Breadboard Computer
+Advanced 8-Bit Computer

@@ -2,7 +2,7 @@
 docs:
   - title: "Overview"
     children:
-      - title: "About this Project"
+      - title: "About the Project"
         url: /
 
   - title: "Build"

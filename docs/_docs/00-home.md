@@ -1,5 +1,5 @@
 ---
-title: "Breadboard Computer"
+title: "Beta-8"
 permalink: /
-excerpt: ""
+excerpt: "Advanced 8-Bit Breadboard Computer"
 ---

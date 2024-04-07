@@ -322,18 +322,20 @@ gameOver:
     adc [score]
     shl
     store [seed], a
+
     .input:
         load a, [INPUT] ; get the input
         ; bit both buttons and jump to subroutine
-        bit #0b00000010
+        bit #0b00000010 ; button 3 pressed
         jnz .three
-        bit #0b00000001
+        bit #0b00000001 ; button 4 pressed
         jnz .four
+
         jmp .input
         .three:
-            jmp reset
+            jmp reset ; play again
         .four:
-            hlt
+            hlt ; end 
 
 
 
